@@ -32,19 +32,10 @@
                                     <input type="file" id="homeImage">
                                 </div>
                             </div>
-
-<!--                            <button type="submit" class="btn btn-primary">Submit</button>-->
-
                         </form>
                     </div>
                     <div class="modal-footer no-border">
-                        <!--                        <div class="btn-group">
-                                                    <button class="btn btn-primary" type="submit">
-                                                        Save <i class="fa fa-check"></i>
-                                                    </button>
-                                                </div>-->
-                           <button type="submit" class="btn btn-primary">Submit</button>
-                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
@@ -82,10 +73,11 @@
                                 <thead>
                                     <tr>
                                         <th>Record No</th>
+                                        <th>Image</th>
                                         <th>Title</th>
                                         <th>Article</th>
-                                        <th>Image</th>
                                         <th>Date Modified</th>
+                                        <th style="width: 170px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -95,6 +87,10 @@
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
@@ -102,6 +98,10 @@
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
@@ -109,15 +109,20 @@
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Record No</th>
+                                        <th>Image</th>
                                         <th>Title</th>
                                         <th>Article</th>
-                                        <th>Image</th>
                                         <th>Date Modified</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>
