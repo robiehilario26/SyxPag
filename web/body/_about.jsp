@@ -3,7 +3,7 @@
     <section class="wrapper site-min-height">
         <!-- page start-->
 
-
+        <div>testinggggg</div>
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-1" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
