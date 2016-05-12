@@ -15,21 +15,15 @@
 
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label for="homeTitle" class="col-lg-2 col-sm-2 control-label">Title</label>
+                                <label for="aboutTitle" class="col-lg-2 col-sm-2 control-label">Title</label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="homeTitle" placeholder="Title">
+                                    <input type="text" class="form-control" id="aboutTitle" placeholder="Title">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="homeArticle" class="col-lg-2 col-sm-2 control-label">Article</label>
+                                <label for="aboutArticle" class="col-lg-2 col-sm-2 control-label">Article</label>
                                 <div class="col-lg-10">
-                                    <textarea type="text" class="form-control" id="homeArticle" placeholder="Article" rows="4"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="homeImage" class="col-lg-2 col-sm-2 control-label">Image</label>
-                                <div class="col-lg-10">
-                                    <input type="file" id="homeImage">
+                                    <textarea type="text" class="form-control" id="aboutArticle" placeholder="Article" rows="4"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -46,7 +40,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Home 
+                       About
                     </header>
 
                     <div class="panel-body">
@@ -64,7 +58,6 @@
                                 <thead>
                                     <tr>
                                         <th>Record No</th>
-                                        <th>Image</th>
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
@@ -74,7 +67,6 @@
                                 <tbody>
                                     <tr>
                                         <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -85,7 +77,6 @@
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -96,7 +87,6 @@
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -109,7 +99,6 @@
                                 <tfoot>
                                     <tr>
                                         <th>Record No</th>
-                                        <th>Image</th>
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
