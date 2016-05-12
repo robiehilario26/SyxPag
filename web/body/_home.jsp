@@ -46,7 +46,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Home Setup
+                        Home 
                     </header>
 
                     <div class="panel-body">
@@ -55,15 +55,6 @@
                                 <button class="btn btn-primary" data-target="#myModal-1" data-toggle="modal">
                                     Add New <i class="fa fa-plus"></i>
                                 </button>
-                            </div>
-                            <div class="btn-group pull-right">
-                                <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="fa fa-angle-down"></i>
-                                </button>
-                                <ul class="dropdown-menu pull-right">
-                                    <li><a href="#">Print</a></li>
-                                    <li><a href="#">Save as PDF</a></li>
-                                    <li><a href="#">Export to Excel</a></li>
-                                </ul>
                             </div>
                         </div>
                         <div class="space15"></div>
@@ -77,7 +68,7 @@
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
-                                        <th style="width: 170px">Action</th>
+                                        <th style="width: 138px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
