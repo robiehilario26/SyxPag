@@ -3,7 +3,7 @@
     <section class="wrapper site-min-height">
         <!-- page start-->
 
-       
+
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal-1" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -17,19 +17,19 @@
                             <div class="form-group">
                                 <label for="aboutTitle" class="col-lg-2 col-sm-2 control-label">Title</label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="aboutTitle" placeholder="Title">
+                                    <input type="text" id="title" class="form-control" id="aboutTitle" placeholder="Title">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="aboutArticle" class="col-lg-2 col-sm-2 control-label">Article</label>
                                 <div class="col-lg-10">
-                                    <textarea type="text" class="form-control" id="aboutArticle" placeholder="Article" rows="4"></textarea>
+                                    <textarea type="text" id="article" class="form-control" id="aboutArticle" placeholder="Article" rows="4"></textarea>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer no-border">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" onclick="save_edit_about_content()" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                       About
+                        About
                     </header>
 
                     <div class="panel-body">
@@ -115,3 +115,53 @@
     </section>
 </section>
 <!--main content end-->
+
+
+
+<script>
+
+
+    function save() {
+
+        alert("where are you from here");
+
+    }
+
+    function save_edit_about_content() {
+
+        var title = $('#title').val();
+        var article = $('#article').val();
+
+        alert(title);
+        alert(article);
+
+        $.ajax({
+            type: "post", // GET or POST
+            url: 'Controller_About', // Path to file
+
+            data: {
+                "title": title,
+                "article": article
+
+
+            },
+            beforeSend: function () {
+
+
+            },
+            complete: function () {
+
+            },
+            success: function (response) {
+
+
+
+            },
+            error: function (xhr) {
+
+
+            }
+        });
+    }
+
+</script>

@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,7 +34,8 @@ public class DAO_About {
 
         try {
             ps = conn.prepareStatement(insert_about);
-
+            ps.setString(1, bm.getTitle());
+            ps.setString(2, bm.getArticle());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -86,6 +89,37 @@ public class DAO_About {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(conn);
         }
+
+    }
+
+    public List<BasherModel> getDetailsForAbout() throws SQLException {
+        List<BasherModel> abouts = new ArrayList<>();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+        String query = "SELECT * FROM about";
+
+        Statement statement = conn.createStatement();
+
+        try {
+            rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                BasherModel about = new BasherModel();
+
+                about.setId(rs.getString("id"));
+                about.setTitle(rs.getString("title"));
+                about.setTitle(rs.getString("article"));
+
+                abouts.add(about);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(conn);
+        }
+        return abouts;
 
     }
 

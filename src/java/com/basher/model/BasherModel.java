@@ -13,7 +13,7 @@ import java.sql.Timestamp;
  */
 public class BasherModel {
 
-    private int id;
+    private String id;
     private String title;
     private String article;
     private String text;
@@ -24,24 +24,17 @@ public class BasherModel {
     private String category;
     private Timestamp date_modified;
 
-   
-
-    
-    
-    
-    
-    
     /**
      * @return the id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
