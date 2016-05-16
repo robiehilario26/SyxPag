@@ -79,7 +79,7 @@
                                         <td>4</td>
                                         <td>X</td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
@@ -90,7 +90,7 @@
                                         <td>4</td>
                                         <td>X</td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
@@ -101,7 +101,7 @@
                                         <td>4</td>
                                         <td>X</td>
                                         <td>
-                                            <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                            <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
