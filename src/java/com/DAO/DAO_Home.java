@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,17 +25,18 @@ public class DAO_Home {
     PreparedStatement ps = null;
     ResultSet rs;
 
-   
     public void insertHome(BasherModel bm) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
 
-        String insert_home = " INSERT INTO `home`(`title`, `article`, `picture`, `date_modified`) VALUES (?,?,?,?)";
+        String insert_home = " INSERT INTO `home`(`title`, `article`) VALUES (?,?)";
 
         try {
             ps = conn.prepareStatement(insert_home);
-
+            ps.setString(1, bm.getTitle());
+            ps.setString(2, bm.getArticle());
+//            ps.setTimestamp(3, bm.getDate_modified());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -86,6 +90,39 @@ public class DAO_Home {
             DBUtil.closePreparedStatement(ps);
             pool.freeConnection(conn);
         }
+
+    }
+
+    public List<BasherModel> getDetailsForHome() throws SQLException {
+        List<BasherModel> abouts = new ArrayList<>();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+        String query = "SELECT id,title,article,date_modified FROM home order by date_modified desc";
+
+        Statement statement = conn.createStatement();
+
+        try {
+            rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+                BasherModel about = new BasherModel();
+
+                about.setId(rs.getString("id"));
+//                about.(rs.getTimestamp("picture"));
+                about.setTitle(rs.getString("title"));
+                about.setArticle(rs.getString("article"));
+                about.setDate_modified(rs.getTimestamp("date_modified"));
+
+                abouts.add(about);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBUtil.closeResultSet(rs);
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(conn);
+        }
+        return abouts;
 
     }
 

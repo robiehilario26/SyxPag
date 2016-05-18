@@ -44,7 +44,6 @@ public class Controller_About extends HttpServlet {
 
         bm.setTitle(title);
         bm.setArticle(article);
-
         dao_about.insertAbout(bm);
 
     }
