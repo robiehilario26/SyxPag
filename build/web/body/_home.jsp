@@ -1,20 +1,3 @@
-<!--<script type="text/javascript" language="javascript" src="assets/advanced-datatable/media/js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="js/jquery.scrollTo.min.js"></script>
-<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-<script src="js/respond.min.js" ></script>
-<script type="text/javascript" language="javascript" src="assets/advanced-datatable/media/js/jquery.dataTables.js"></script>
-<script type="text/javascript" src="assets/data-tables/DT_bootstrap.js"></script>
-<script type="text/javascript" src="assets/data-tables/DT_bootstrap.css"></script>
-<script type="text/javascript" src="assets/data-tables/jquery.dataTables.js"></script>
-<script src="js/jquery-1.11.1.js" type="text/javascript"></script>
-
-<script src="js/dataTables.min.js" type="text/javascript"></script>
-<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>-->
-
-<!--script for this page only-->
-
 <script>
     $(document).ready(function () {
         $('#example1').dataTable({
@@ -56,10 +39,6 @@
 
                 },
                 complete: function () {
-                    // Once finished
-                    // $('#target').remove();
-                    //   $loading.hide();
-                    // Clear message
 
                 },
                 success: function () {
@@ -88,10 +67,6 @@
             },
             beforeSend: function () {                                // Before Ajax 
 
-//                setTimeout($loading.show(), 5000); // set timout 
-
-//                $success.hide();
-//                $error.hide();
             },
             complete: function () {
 
@@ -101,19 +76,12 @@
 // Show content
 //                alert(response.toString());
                 $('#example1').DataTable().clear().draw();
-//                $loading.hide();
-                //$success.show();
-//                setTimeout($success.show(), 3000); // set timout 
                 var button = ' <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button type="button" class="btn btn-danger btn-sm">Delete</button>';
-
 
                 $.each(response, function (index, value) {
                     rows = index;
-//                    console.log(value.title.toString());
 
-//<img src="ProfilePicView?id=${empicture.empNo}" alt="User Image" />
                     var id_pic = value.id.toString();
-//                    var id_pic = "41";
                     var pictview = ' <div class="image"><img src="Picture_view?id=' + id_pic + '" alt="User Image" style="width="100px"; height="100px"; /></div>';
 //                    console.log(value.id.toString());
                     $('#example1').DataTable().row.add([
@@ -127,18 +95,10 @@
                     ]).draw();
 
 
-//                    $("#example1 > tbody").append("<tr><td>" + value.id.toString() + "</td>\n\
-//            <td>" + value.title.toString() + "</td>\n\
-//<td>" + value.title.toString() + "</td>\n\
-//<td>" + value.article.toString() + "</td>\n\
-//<td>" + value.date_modified.toString() + "</td>\n\
-//<td>" + button + "</td></tr>");
                 });
             },
             error: function (xhr) {
-//                $loading.hide();
-//                $success.hide();
-//                $error.show();
+
             }
         });
     }
@@ -348,57 +308,12 @@
         var key = window.event.keyCode;
         // If the user has pressed enter
         if (key == 13) {
-//            document.getElementById("insert_comment").value = document.getElementById("insert_comment").value;
-//            var message = $('#insert_comment').val();
             console.log("submit_ajax ");
-//            submit_ajax()
-//            $('form#activity_form').submit();
             return true;
         }
         else {
             return false;
         }
-    }
-
-
-    function submit_ajax() {
-//        $("#activity_form").on('submit', (function (e) {
-//            e.preventDefault();
-//            $.ajax({
-//                url: "FileUpload",
-//                type: "POST",
-//                data: new FormData(this),
-//                mimeType: "multipart/form-data",
-//                contentType: false,
-//                cache: false,
-//                processData: false,
-//                // timeout: 2000, // Waiting time
-//                beforeSend: function () {
-//                    // Before Ajax 
-//
-//                },
-//                complete: function () {
-//                    // Once finished
-//                    // $('#target').remove();
-//                    //   $loading.hide();
-//                    // Clear message
-//
-//                },
-//                success: function () {
-//                    //   $('#requestView').modal('hide');
-//
-//
-//                },
-//                error: function (xhr) {
-//
-//
-//                }
-//            });
-//        }));
-
-
-
-
     }
 
 </script>
