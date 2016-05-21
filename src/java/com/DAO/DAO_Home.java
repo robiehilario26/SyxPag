@@ -126,4 +126,30 @@ public class DAO_Home {
 
     }
 
+    public void UpdateWorkOrderFileStatus(int id, boolean isthereFiles) {
+        BasherModel wo = new BasherModel();
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection conn = pool.getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String query = "UPDATE home\n"
+                + "SET picture=?\n"
+                + "WHERE id=?;";
+        try {
+            ps = conn.prepareStatement(query);
+
+            ps.setBoolean(1, isthereFiles);
+            ps.setInt(2, 2);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+
+            DBUtil.closePreparedStatement(ps);
+            pool.freeConnection(conn);
+        }
+
+    }
+
 }

@@ -37,6 +37,44 @@
             ]
                     // "deferLoading": 57
         });
+
+
+        $("#activity_form").on('submit', (function (e) {
+
+            e.preventDefault();
+            $.ajax({
+                url: "FileUpload",
+                type: "POST",
+                data: new FormData(this),
+                mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+                // timeout: 2000, // Waiting time
+                beforeSend: function () {
+                    // Before Ajax 
+
+                },
+                complete: function () {
+                    // Once finished
+                    // $('#target').remove();
+                    //   $loading.hide();
+                    // Clear message
+
+                },
+                success: function () {
+                    //   $('#requestView').modal('hide');
+                    load_data();
+                    document.getElementById('closeModalButton').click();
+                    $('#activity_form').trigger("reset");
+
+                },
+                error: function (xhr) {
+
+
+                }
+            });
+        }));
     });
 
     function load_data() {
@@ -71,13 +109,16 @@
 
                 $.each(response, function (index, value) {
                     rows = index;
-                    console.log(value.title.toString());
+//                    console.log(value.title.toString());
 
-
-//                     alert(value.id);
+//<img src="ProfilePicView?id=${empicture.empNo}" alt="User Image" />
+                    var id_pic = value.id.toString();
+//                    var id_pic = "41";
+                    var pictview = ' <div class="image"><img src="Picture_view?id=' + id_pic + '" alt="User Image" style="width="100px"; height="100px"; /></div>';
+//                    console.log(value.id.toString());
                     $('#example1').DataTable().row.add([
                         value.id,
-                        value.image,
+                        pictview,
                         value.title,
                         value.article,
                         value.date_modified,
@@ -139,6 +180,7 @@
 
                 console.log("success");
                 load_data();
+                update_my_exam();
             },
             error: function (xhr) {
                 console.log(xhr.toString());
@@ -169,35 +211,40 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                        <button aria-hidden="true" data-dismiss="modal" id="closeModalButton" name="closeModalButton" class="close" type="button">×</button>
                         <h4 class="modal-title">Create New</h4>
                     </div>
-                    <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="activity_form" action="FileUpload" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
 
-                        <form class="form-horizontal" role="form">
+
                             <div class="form-group">
                                 <label for="homeTitle" class="col-lg-2 col-sm-2 control-label">Title</label>
                                 <div class="col-lg-10">
-                                    <input type="text"  id="title" class="form-control" id="homeTitle" placeholder="Title">
+                                    <input type="text" id="title" name="title" class="form-control" id="homeTitle" placeholder="Title">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="homeArticle" class="col-lg-2 col-sm-2 control-label">Article</label>
                                 <div class="col-lg-10">
-                                    <textarea type="text" id="article" class="form-control" id="homeArticle" placeholder="Article" rows="4"></textarea>
+                                    <textarea type="text" id="article" name="article" class="form-control" placeholder="Article" rows="4"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="homeImage" class="col-lg-2 col-sm-2 control-label">Image</label>
                                 <div class="col-lg-10">
-                                    <input type="file" id="homeImage">
-                                </div>
+                                    <!--<input type="file" id="homeImage">-->
+                                    <input type="file" name="files" id="files"/>
+                                    <!--<input type="text"  id="workOrderid" name="workOrderid" class="form-control" onkeypress="onTestChange();"/>-->
+                                </div>  
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer no-border">
-                        <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="save_edit_home_content()">Submit</button>
-                    </div>
+
+                        </div>
+                        <div class="modal-footer no-border">
+                            <button type="submit" class="btn btn-primary" >Submit</button>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -235,125 +282,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     <!--                                    <tr>
-                                                                            <td>Trident 123</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
-                                                                            <td>Trident</td>
-                                                                            <td>Internet Explorer 4.0</td>
-                                                                            <td>Win 95+</td>
-                                                                            <td>4</td>
-                                                                            <td>X</td>
-                                                                            <td>
-                                                                                <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>
-                                                                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                                                            </td>
-                                                                        </tr>
-                                    
-                                                                        <tr>
                                                                             <td>Trident</td>
                                                                             <td>Internet Explorer 4.0</td>
                                                                             <td>Win 95+</td>
@@ -389,10 +319,87 @@
 
 <script>
 
+    function update_my_exam() {
+        var x = "2";
+        $.ajax({
+            url: "FileUpload",
+            type: "POST",
+            data: {workOrderid: x},
+            beforeSend: function () {
+                // Before Ajax 
+//                console.log("before success" + global_recordno);
+            },
+            complete: function () {
+
+            },
+            success: function () {
+                alert("success:");
+//                load_exam_data_table();
+            },
+            error: function () {
+                alert("error");
+                alert(xhr.toString());
+            }
+        });
+    }
+
+
+    function onTestChange() {
+        var key = window.event.keyCode;
+        // If the user has pressed enter
+        if (key == 13) {
+//            document.getElementById("insert_comment").value = document.getElementById("insert_comment").value;
+//            var message = $('#insert_comment').val();
+            console.log("submit_ajax ");
+//            submit_ajax()
+//            $('form#activity_form').submit();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    function submit_ajax() {
+//        $("#activity_form").on('submit', (function (e) {
+//            e.preventDefault();
+//            $.ajax({
+//                url: "FileUpload",
+//                type: "POST",
+//                data: new FormData(this),
+//                mimeType: "multipart/form-data",
+//                contentType: false,
+//                cache: false,
+//                processData: false,
+//                // timeout: 2000, // Waiting time
+//                beforeSend: function () {
+//                    // Before Ajax 
+//
+//                },
+//                complete: function () {
+//                    // Once finished
+//                    // $('#target').remove();
+//                    //   $loading.hide();
+//                    // Clear message
+//
+//                },
+//                success: function () {
+//                    //   $('#requestView').modal('hide');
+//
+//
+//                },
+//                error: function (xhr) {
+//
+//
+//                }
+//            });
+//        }));
 
 
 
 
+    }
 
 </script>
 
