@@ -7,6 +7,7 @@ package com.DAO;
 
 import com.DB.Util.ConnectionPool;
 import com.DB.Util.DBUtil;
+import com.DB.Util.DateUtil;
 import com.basher.model.BasherModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,6 +58,10 @@ public class DAO_About {
 
         try {
             ps = conn.prepareStatement(update_about);
+            ps.setString(1, bm.getTitle());
+            ps.setString(2, bm.getArticle());
+            ps.setTimestamp(3, DateUtil.getCurrentTimeStamp());
+            ps.setInt(4, bm.getIndicator());
 
             ps.executeUpdate();
 
@@ -70,7 +75,7 @@ public class DAO_About {
 
     }
 
-    public void deleteAbout() {
+    public void deleteAbout(int id) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -79,7 +84,7 @@ public class DAO_About {
 
         try {
             ps = conn.prepareStatement(delete_about);
-
+            ps.setInt(1, id);
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -108,7 +113,8 @@ public class DAO_About {
 
                 about.setId(rs.getString("id"));
                 about.setTitle(rs.getString("title"));
-                about.setTitle(rs.getString("article"));
+                about.setArticle(rs.getString("article"));
+                about.setDate_modified(rs.getTimestamp("date_modified"));
 
                 abouts.add(about);
             }

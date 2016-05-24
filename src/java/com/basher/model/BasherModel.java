@@ -23,6 +23,9 @@ public class BasherModel {
     private String desc;
     private String category;
     private Timestamp date_modified;
+    private int indicator ;
+    
+    
 
     /**
      * @return the id
@@ -162,6 +165,20 @@ public class BasherModel {
      */
     public void setDate_modified(Timestamp date_modified) {
         this.date_modified = date_modified;
+    }
+
+    /**
+     * @return the indicator
+     */
+    public int getIndicator() {
+        return indicator;
+    }
+
+    /**
+     * @param indicator the indicator to set
+     */
+    public void setIndicator(int indicator) {
+        this.indicator = indicator;
     }
 
 }
