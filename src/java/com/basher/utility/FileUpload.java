@@ -7,19 +7,13 @@ package com.basher.utility;
 
 import com.DAO.DAO_Home;
 import com.DB.Util.ConnectionPool;
-import com.DB.Util.DBUtil;
 import com.basher.model.BasherModel;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import java.nio.file.Files;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -28,13 +22,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 /**
  *
  * @author User
  */
-@MultipartConfig(maxFileSize = 16177215)
+@MultipartConfig(maxFileSize = 120177222)
 @WebServlet(name = "FileUpload", urlPatterns = {"/FileUpload"})
 public class FileUpload extends HttpServlet {
 
@@ -67,61 +60,67 @@ public class FileUpload extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String action = request.getParameter("action_taken");
         String title = request.getParameter("title");
         String article = request.getParameter("article");
+        String update_id = request.getParameter("update_id");
 
         System.out.println("Testing the parameters passed if its correct");
+        System.out.println(update_id);
+        System.out.println(action);
         System.out.println(title);
         System.out.println(article);
-
-        BasherModel studObj = new BasherModel();
-        //String stud = 
-        //studObj.setStudentNumber(Integer.parseInt(stud));
-
-//        studObj.setStudentNumber(request.getParameter("stud"));
-        InputStream inputStream = null; // input stream of the upload file
-        System.out.println("Servlet");
-        // obtains the upload file part in this multipart request
-
-        Part filePart = request.getPart("files");
-        final String fileName = getFileName(filePart);
-        System.out.println("filename " + fileName);
-        if (filePart != null) {
-            System.out.println(filePart.getName());
-            System.out.println(filePart.getSize());
-            System.out.println(filePart.getContentType());
-
-            // obtains input stream of the upload file
-            inputStream = filePart.getInputStream();
-        }
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-//        String query = "UPDATE home SET picture =? WHERE id =6";
-        String query = "INSERT INTO home(\n"
-                + "            picture,title,article)\n"
-                + "    VALUES ( ?,?,?);";
-        try {
-            ps = conn.prepareStatement(query);
-            if (inputStream != null) {
-                // fetches input stream of the upload file for the blob column
-                ps.setBlob(1, inputStream);
-                ps.setString(2, title);
-                ps.setString(3, article);
-            }
-//            ps.setString(2, studObj.getStudentNumber());
+        String query = "";
+        BasherModel bash = new BasherModel();
+        DAO_Home dao_home = new DAO_Home();
+        if (action.equalsIgnoreCase("deleted")) {
+            System.out.println("executed");
 
-            int row = ps.executeUpdate();
-            if (row > 0) {
-                System.out.println("File uploaded and saved into database");
-            }
+            bash.setId(update_id);
+            dao_home.deleteHome_by_id(update_id);
 
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-//            Logger.getLogger(AddStudent.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+
+            InputStream inputStream = null; // input stream of the upload file
+            System.out.println("Servlet");
+            // obtains the upload file part in this multipart request
+
+            Part filePart = request.getPart("files");
+            final String fileName = getFileName(filePart);
+
+            if (action.equalsIgnoreCase("add")) {
+                System.out.println("insert execute");
+                bash.setTitle(title);
+                bash.setArticle(article);
+                bash.setFile_name(fileName);
+                bash.setPicture((Blob) inputStream);
+                dao_home.add_Home(bash, filePart);
+
+            } else if (action.equalsIgnoreCase("update")) {
+
+                if (filePart.getSize() == 0) {
+                    System.out.println("no image. image should remain the same");
+                    bash.setArticle(article);
+                    bash.setTitle(title);
+                    dao_home.update_Home_by_id(bash, update_id);
+
+                } else {
+                    System.out.println("new image set.");
+                    bash.setTitle(title);
+                    bash.setArticle(article);
+                    bash.setFile_name(fileName);
+                    bash.setPicture((Blob) inputStream);
+                    dao_home.update_Home_by_id_with_picture(bash, update_id, filePart);
+                }
+
+            }
         }
 
     }
+
 }
