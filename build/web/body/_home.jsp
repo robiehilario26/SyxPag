@@ -162,7 +162,9 @@
 //                    var time = new Date().getTime();
                     var id_pic = value.id.toString();
 
-                    var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '" alt="User Image" style="width="100px"; height="100px"; /></div>';
+                    var table_name = "home";
+                    var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';
+
 
                     var x = $('#myimg' + counting + '').attr('src', $(this).src + '?' + (new Date()).getTime());
                     console.log('time=== ' + counting + '' + x);

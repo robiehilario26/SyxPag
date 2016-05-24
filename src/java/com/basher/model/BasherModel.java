@@ -25,10 +25,20 @@ public class BasherModel {
     private String category;
     private Timestamp date_modified;
 
+<<<<<<< HEAD
     private int indicator;
 
     private String file_name;
     private Blob picture;
+=======
+    private int indicator ;
+    
+    
+
+    private String file_name;
+    private Blob picture;
+
+>>>>>>> 8e6fb84d904432d31ee1c1c5cb678effa6dbad0d
 
     /**
      * @return the id
@@ -185,8 +195,14 @@ public class BasherModel {
     public void setIndicator(int indicator) {
         this.indicator = indicator;
 
+<<<<<<< HEAD
     }
 
+=======
+//     * @return the file_name
+//     */
+    }
+>>>>>>> 8e6fb84d904432d31ee1c1c5cb678effa6dbad0d
     public String getFile_name() {
         return file_name;
     }
