@@ -5,6 +5,7 @@
  */
 package com.basher.model;
 
+import java.sql.Blob;
 import java.sql.Timestamp;
 
 /**
@@ -23,6 +24,8 @@ public class BasherModel {
     private String desc;
     private String category;
     private Timestamp date_modified;
+    private String file_name;
+    private Blob picture;
 
     /**
      * @return the id
@@ -162,6 +165,34 @@ public class BasherModel {
      */
     public void setDate_modified(Timestamp date_modified) {
         this.date_modified = date_modified;
+    }
+
+    /**
+     * @return the file_name
+     */
+    public String getFile_name() {
+        return file_name;
+    }
+
+    /**
+     * @param file_name the file_name to set
+     */
+    public void setFile_name(String file_name) {
+        this.file_name = file_name;
+    }
+
+    /**
+     * @return the picture
+     */
+    public Blob getPicture() {
+        return picture;
+    }
+
+    /**
+     * @param picture the picture to set
+     */
+    public void setPicture(Blob picture) {
+        this.picture = picture;
     }
 
 }

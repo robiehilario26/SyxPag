@@ -1,6 +1,9 @@
+
 <script>
+    var global_action = "";
     $(document).ready(function () {
         $('#example1').dataTable({
+            "cache": false,
             "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,
@@ -14,7 +17,7 @@
                 {
                     //used to force the datable to accept null value
                     //the default content will be null
-                    "targets": [0, 1, 2, 3, 4, 5],
+                    "targets": [0, 1, 2, 3, 4, 5, 6],
                     "defaultContent": ""
                 }
             ]
@@ -36,16 +39,28 @@
                 // timeout: 2000, // Waiting time
                 beforeSend: function () {
                     // Before Ajax 
-
+                    get_file();
                 },
                 complete: function () {
 
                 },
                 success: function () {
                     //   $('#requestView').modal('hide');
-                    load_data();
+//                    setTimeout(load_data(), 1000);
+
                     document.getElementById('closeModalButton').click();
                     $('#activity_form').trigger("reset");
+//                    alert("aw aw aw");
+//                    delete_id();
+                    load_data();
+//                    if (global_action == "add") {
+//
+//                    }
+                    if (global_reload_page == "true" && global_action != "add") {
+                        window.location.reload();
+                    }
+//                   
+
 
                 },
                 error: function (xhr) {
@@ -56,12 +71,70 @@
         }));
     });
 
+    function set_action_taken_add() {
+        global_action = "add";
+        global_pk = "";
+        $("#update_id").val(global_pk);
+        $("#action_taken").val(global_action);
+
+    }
+    var global_filename;
+    var global_pk;
+    var global_get_file;
+    function set_action_taken_update(elem) {
+        var global_title;
+        var global_article;
+        global_action = "update";
+        $("#action_taken").val(global_action);
+        var id = $(elem).attr("id");
+//        global_leave_id = ($('#' + id + '').parent().siblings().eq(0).text());
+        global_pk = ($('#' + id + '').parent().siblings().eq(0).text());
+        global_title = ($('#' + id + '').parent().siblings().eq(2).text());
+        global_article = ($('#' + id + '').parent().siblings().eq(3).text());
+        global_filename = ($('#' + id + '').parent().siblings().eq(5).text());
+        console.log("update id " + global_pk);
+        console.log("title " + global_title);
+        console.log("article " + global_article);
+        console.log("scan pic " + global_filename);
+        $("#update_id").val(global_pk);
+        $("#title").val(global_title);
+        $("#article").val(global_article);
+
+    }
+
+    var global_reload_page;
+    function get_file() {
+
+
+        var has_selected_file = $('input[type=file]').filter(function () {
+            return $.trim(this.value) != ''
+        }).length > 0;
+
+        if (has_selected_file) {
+            /* do something here */
+            console.log(" reload page needed");
+            global_reload_page = "true";
+        }
+        else
+        {
+            global_reload_page = "false";
+            console.log("no reload page needed");
+        }
+
+
+    }
+
+
+
     function load_data() {
+        var cachebuster = Math.round(new Date().getTime() / 1000);
+        console.log("cachebuster " + cachebuster);
+        var counting = 0;
         console.log("success load load_data");
         $.ajax({
             type: "get", // GET or POST
             url: 'Data_table_home', // Path to file
-
+            cache: false,
             data: {
 //                empno:${emp.empNo}
             },
@@ -75,22 +148,33 @@
             success: function (response) {
 // Show content
 //                alert(response.toString());
+
                 $('#example1').DataTable().clear().draw();
-                var button = ' <button type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button type="button" class="btn btn-danger btn-sm">Delete</button>';
+
 
                 $.each(response, function (index, value) {
-                    rows = index;
 
+
+                    counting++;
+                    var button = ' <button id="' + counting + '" onclick="set_action_taken_update(this)" type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button id="delete_' + counting + '" type="button" class="btn btn-danger btn-sm" onclick="delete_id(this)">Delete</button>';
+                    rows = index;
+                    var hide_filename = '<span style="display:none">' + value.file_name + '</span>';
+//                    var time = new Date().getTime();
                     var id_pic = value.id.toString();
-                    var pictview = ' <div class="image"><img src="Picture_view?id=' + id_pic + '" alt="User Image" style="width="100px"; height="100px"; /></div>';
-//                    console.log(value.id.toString());
+
+                    var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '" alt="User Image" style="width="100px"; height="100px"; /></div>';
+
+                    var x = $('#myimg' + counting + '').attr('src', $(this).src + '?' + (new Date()).getTime());
+                    console.log('time=== ' + counting + '' + x);
                     $('#example1').DataTable().row.add([
                         value.id,
                         pictview,
                         value.title,
                         value.article,
                         value.date_modified,
+                        value.file_name,
                         button
+
 
                     ]).draw();
 
@@ -104,6 +188,50 @@
     }
 
 
+    function delete_id(elem) {
+        var act = "deleted";
+        var title = "none";
+        var article = "none";
+        var id = $(elem).attr("id");
+        global_pk = ($('#' + id + '').parent().siblings().eq(0).text());
+        if (confirm("Are you sure?")) {
+            // your deletion code
+            console.log("deleted");
+
+
+
+            $.ajax({
+                type: "post", // GET or POST
+                url: 'FileUpload', // Path to file
+
+                data: {
+                    "action_taken": act,
+                    "update_id": global_pk,
+                    "article": article,
+                    "title": title
+
+
+                },
+                beforeSend: function () {
+
+
+                },
+                complete: function () {
+
+                },
+                success: function (response) {
+
+                    console.log("success");
+                    load_data();
+//                    update_my_exam();
+                },
+                error: function (xhr) {
+                    console.log(xhr.toString());
+                }
+            });
+        }
+        return false;
+    }
 
     function save() {
 
@@ -148,6 +276,8 @@
         });
     }
 
+
+
 </script>
 
 <script>
@@ -157,6 +287,7 @@
         load_data();
 
     });
+
 
 </script>
 <!--script for this page-->
@@ -195,12 +326,15 @@
                                 <div class="col-lg-10">
                                     <!--<input type="file" id="homeImage">-->
                                     <input type="file" name="files" id="files"/>
+                                    <input type="hidden" name="action_taken" id="action_taken">
+                                    <input type="hidden" name="update_id" id="update_id">
                                     <!--<input type="text"  id="workOrderid" name="workOrderid" class="form-control" onkeypress="onTestChange();"/>-->
                                 </div>  
                             </div>
 
                         </div>
                         <div class="modal-footer no-border">
+
                             <button type="submit" class="btn btn-primary" >Submit</button>
 
                         </div>
@@ -220,7 +354,7 @@
                     <div class="panel-body">
                         <div class="clearfix">
                             <div class="btn-group">
-                                <button class="btn btn-primary" data-target="#myModal-1" data-toggle="modal">
+                                <button class="btn btn-primary" data-target="#myModal-1" data-toggle="modal" onclick="set_action_taken_add()">
                                     Add New <i class="fa fa-plus"></i>
                                 </button>
 
@@ -238,7 +372,9 @@
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
+                                        <th>file name</th>
                                         <th style="width: 138px">Action</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -262,7 +398,9 @@
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
+                                        <th>file name</th>
                                         <th>Action</th>
+
                                     </tr>
                                 </tfoot>
                             </table>
