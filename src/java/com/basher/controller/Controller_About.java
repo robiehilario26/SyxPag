@@ -34,17 +34,27 @@ public class Controller_About extends HttpServlet {
 
         String title = request.getParameter("title");
         String article = request.getParameter("article");
-
-        System.out.println("Testing the parameters passed if its correct");
-        System.out.println(title);
-        System.out.println(article);
+        String action = request.getParameter("action");
+        String id = request.getParameter("id");
 
         DAO_About dao_about = new DAO_About();
         BasherModel bm = new BasherModel();
 
         bm.setTitle(title);
         bm.setArticle(article);
-        dao_about.insertAbout(bm);
+        if (action.equalsIgnoreCase("add")) {
+            dao_about.insertAbout(bm);
+
+        } else if (action.equalsIgnoreCase("edit")) {
+
+            bm.setIndicator(Integer.parseInt(id));
+            dao_about.updateAbout(bm);
+
+        } else {
+
+            dao_about.deleteAbout(Integer.parseInt(id));
+
+        }
 
     }
 
