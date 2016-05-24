@@ -29,7 +29,7 @@
 
             e.preventDefault();
             $.ajax({
-                url: "FileUpload",
+                url: "FileUpload_gallery",
                 type: "POST",
                 data: new FormData(this),
                 mimeType: "multipart/form-data",
@@ -133,7 +133,7 @@
         console.log("success load load_data");
         $.ajax({
             type: "get", // GET or POST
-            url: 'Data_table_home', // Path to file
+            url: 'Data_table_gallery', // Path to file
             cache: false,
             data: {
 //                empno:${emp.empNo}
@@ -158,13 +158,10 @@
                     counting++;
                     var button = ' <button id="' + counting + '" onclick="set_action_taken_update(this)" type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button id="delete_' + counting + '" type="button" class="btn btn-danger btn-sm" onclick="delete_id(this)">Delete</button>';
                     rows = index;
-                    var hide_filename = '<span style="display:none">' + value.file_name + '</span>';
-//                    var time = new Date().getTime();
+                    
                     var id_pic = value.id.toString();
-
-                    var table_name = "home";
+                    var table_name = "gallery";
                     var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';
-
 
                     var x = $('#myimg' + counting + '').attr('src', $(this).src + '?' + (new Date()).getTime());
                     console.log('time=== ' + counting + '' + x);
@@ -204,7 +201,7 @@
 
             $.ajax({
                 type: "post", // GET or POST
-                url: 'FileUpload', // Path to file
+                url: 'FileUpload_gallery', // Path to file
 
                 data: {
                     "action_taken": act,
@@ -307,7 +304,7 @@
                         <button aria-hidden="true" data-dismiss="modal" id="closeModalButton" name="closeModalButton" class="close" type="button">×</button>
                         <h4 class="modal-title">Create New</h4>
                     </div>
-                    <form class="form-horizontal" role="form" id="activity_form" action="FileUpload" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" id="activity_form" action="FileUpload_gallery" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
 
 
@@ -422,7 +419,7 @@
     function update_my_exam() {
         var x = "2";
         $.ajax({
-            url: "FileUpload",
+            url: "FileUpload_gallery",
             type: "POST",
             data: {workOrderid: x},
             beforeSend: function () {

@@ -36,8 +36,8 @@ public class Picture_view extends HttpServlet {
             throws ServletException, IOException {
 //       String brandname= request.getParameter("id");
         int brandname = Integer.parseInt(request.getParameter("id"));
-//        int brandname = 41;
-        System.out.println("brandname " + brandname);
+        String select_table = request.getParameter("set_table");
+
         try {
             ConnectionPool pool = ConnectionPool.getInstance();
             Connection conn = pool.getConnection();
@@ -47,7 +47,7 @@ public class Picture_view extends HttpServlet {
             PreparedStatement preparedStatement = null;
             try {
                 preparedStatement = conn.
-                        prepareStatement("select picture from home where id = ? ");
+                        prepareStatement("select picture from " + select_table + " where id = ? ");
 //                preparedStatement.setString(1, brandname);
                 preparedStatement.setInt(1, brandname);
             } catch (SQLException ex) {
