@@ -24,16 +24,16 @@ public class BasherModel {
     private String desc;
     private String category;
     private Timestamp date_modified;
-
-
     private int indicator;
-
     private String file_name;
     private Blob picture;
 
+    private String username;
+    private String password;
+    private String fname;
+    private String lname;
+    private String gender;
 
-    
-    
     /**
      * @return the id
      */
@@ -191,11 +191,8 @@ public class BasherModel {
 
     }
 
-
 //     * @return the file_name
 //     */
-
-
     public String getFile_name() {
         return file_name;
     }
@@ -220,6 +217,76 @@ public class BasherModel {
     public void setPicture(Blob picture) {
         this.picture = picture;
 
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the fname
+     */
+    public String getFname() {
+        return fname;
+    }
+
+    /**
+     * @param fname the fname to set
+     */
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    /**
+     * @return the lname
+     */
+    public String getLname() {
+        return lname;
+    }
+
+    /**
+     * @param lname the lname to set
+     */
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
 }
