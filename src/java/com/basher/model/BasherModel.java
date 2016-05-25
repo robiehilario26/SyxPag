@@ -24,9 +24,14 @@ public class BasherModel {
     private String desc;
     private String category;
     private Timestamp date_modified;
+<<<<<<< HEAD
+=======
+
+>>>>>>> d71e010b367aa697522cade6c12bfe647adb16ff
     private int indicator;
     private String file_name;
     private Blob picture;
+<<<<<<< HEAD
 
     private String username;
     private String password;
@@ -34,6 +39,10 @@ public class BasherModel {
     private String lname;
     private String gender;
 
+=======
+    
+    
+>>>>>>> d71e010b367aa697522cade6c12bfe647adb16ff
     /**
      * @return the id
      */
@@ -191,8 +200,11 @@ public class BasherModel {
 
     }
 
+<<<<<<< HEAD
 //     * @return the file_name
 //     */
+=======
+>>>>>>> d71e010b367aa697522cade6c12bfe647adb16ff
     public String getFile_name() {
         return file_name;
     }

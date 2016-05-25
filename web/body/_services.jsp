@@ -40,7 +40,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                       About
+                       Services
                     </header>
 
                     <div class="panel-body">
@@ -66,7 +66,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Trident</td>
+                                        <td>1123</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -76,7 +76,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
+                                        <td>1123</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -86,7 +86,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
+                                        <td>1123</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>

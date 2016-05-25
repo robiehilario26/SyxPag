@@ -6,7 +6,7 @@
 <%@include file="/include/top.jsp" %>
 <section id="container" class="">
     <%@include file="/include/header.jsp" %>
-    <%@include file="/include/sidebar.jsp" %>
+    <%@include file="/include/navigator/navAcknowledgement.jsp" %>
     <%@include file="/body/_acknowledgment.jsp" %>
     <%@include file="/include/footer.jsp" %>
 </section>

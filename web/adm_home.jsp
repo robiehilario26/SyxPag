@@ -4,9 +4,10 @@
     Author     : Jin
 --%>
 <%@include file="/include/top.jsp" %>
+
 <section id="container" class="">
     <%@include file="/include/header.jsp" %>
-    <%@include file="/include/sidebar.jsp" %>
+    <%@include file="/include/navigator/navHome.jsp" %>
     <%@include file="/body/_home.jsp" %>
     <%@include file="/include/footer.jsp" %>
 </section>

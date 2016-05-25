@@ -6,8 +6,8 @@
 <%@include file="/include/top.jsp" %>
 <section id="container" class="">
     <%@include file="/include/header.jsp" %>
-    <%@include file="/include/sidebar.jsp" %>
-    <%@include file="/body/_about.jsp" %>
+    <%@include file="/include/navigator/navBlog.jsp" %>
+    <%@include file="/body/_blog.jsp" %>
     <%@include file="/include/footer.jsp" %>
 </section>
 <%@include file="/include/buttom.jsp" %>
