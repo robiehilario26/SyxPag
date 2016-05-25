@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/model/BasherModel.java</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/web/body/_about.jsp</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/controller/Controller_About.java</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/src/java/com/DB/Util/DateUtil.java</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/src/java/com/DAO/DAO_About.java</file>
-=======
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/body/_home.jsp</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/FileUpload.java</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/DAO/DAO_Home.java</file>
->>>>>>> 0b25c5af2a75e5536cd094a5d00c30d4b7c2763b
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/DAO/DAO_Gallery.java</file>
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/adm_team.jsp</file>
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/body/_gallery_new.jsp</file>
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/gallery/FileUpload_gallery.java</file>
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/Picture_view.java</file>
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/gallery/Data_table_gallery.java</file>
         </group>
     </open-files>
 </project-private>
