@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label for="userGender" class="col-lg-2 col-sm-2 control-label">Gender</label>
                                 <div class="col-lg-10">
-                                    <select class="form-control m-bot15">
+                                    <select id="gender" class="form-control m-bot15">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>

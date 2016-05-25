@@ -25,15 +25,12 @@ public class BasherModel {
     private String category;
     private Timestamp date_modified;
 
-
     private int indicator;
 
     private String file_name;
     private Blob picture;
-
- 
-
-
+    
+    
     /**
      * @return the id
      */
@@ -188,7 +185,6 @@ public class BasherModel {
      */
     public void setIndicator(int indicator) {
         this.indicator = indicator;
-
 
     }
 
