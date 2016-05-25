@@ -15,15 +15,21 @@
 
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
+                                <label for="inputFile" class="col-lg-2 col-sm-2 control-label">Logo File Upload</label>
+                                <div class="col-lg-10">
+                                    <input type="file" id="inputFile">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="aboutTitle" class="col-lg-2 col-sm-2 control-label">Title</label>
                                 <div class="col-lg-10">
                                     <input type="text" class="form-control" id="aboutTitle" placeholder="Title">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="aboutArticle" class="col-lg-2 col-sm-2 control-label">Article</label>
+                                <label for="about   Title" class="col-lg-2 col-sm-2 control-label">Link</label>
                                 <div class="col-lg-10">
-                                    <textarea type="text" class="form-control" id="aboutArticle" placeholder="Article" rows="4"></textarea>
+                                    <input type="text" class="form-control" id="aboutTitle" placeholder="https://">
                                 </div>
                             </div>
                         </form>
@@ -40,7 +46,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                       About
+                        About Links
                     </header>
 
                     <div class="panel-body">
@@ -58,8 +64,9 @@
                                 <thead>
                                     <tr>
                                         <th>Record No</th>
+                                        <th>Logo</th>
                                         <th>Title</th>
-                                        <th>Article</th>
+                                        <th>Link</th>
                                         <th>Date Modified</th>
                                         <th style="width: 138px">Action</th>
                                     </tr>
@@ -67,6 +74,7 @@
                                 <tbody>
                                     <tr>
                                         <td>Trident</td>
+                                         <td>Win 95+</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -77,6 +85,7 @@
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
+                                         <td>Win 95+</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -87,6 +96,7 @@
                                     </tr>
                                     <tr>
                                         <td>Trident</td>
+                                         <td>Win 95+</td>
                                         <td>Win 95+</td>
                                         <td>4</td>
                                         <td>X</td>
@@ -99,8 +109,9 @@
                                 <tfoot>
                                     <tr>
                                         <th>Record No</th>
+                                        <th>Logo</th>
                                         <th>Title</th>
-                                        <th>Article</th>
+                                        <th>Link</th>
                                         <th>Date Modified</th>
                                         <th>Action</th>
                                     </tr>

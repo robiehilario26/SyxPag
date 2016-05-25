@@ -12,24 +12,17 @@
                         <h4 class="modal-title">Create New</h4>
                     </div>
                     <div class="modal-body">
-
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label for="aboutTitle" class="col-lg-2 col-sm-2 control-label">Title</label>
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="aboutTitle" placeholder="Title">
-                                </div>
+                        <div class="form-group">
+                            <label for="inputFile" class="col-lg-2 col-sm-2 control-label">File input</label>
+                            <div class="col-lg-10">
+                                <input type="file" id="inputFile">
+                                <p class="help-block">Example block-level help text here.</p>
                             </div>
-                            <div class="form-group">
-                                <label for="aboutArticle" class="col-lg-2 col-sm-2 control-label">Article</label>
-                                <div class="col-lg-10">
-                                    <textarea type="text" class="form-control" id="aboutArticle" placeholder="Article" rows="4"></textarea>
-                                </div>
-                            </div>
+                        </div>
                         </form>
                     </div>
                     <div class="modal-footer no-border">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Upload</button>
                     </div>
                 </div>
             </div>
@@ -40,7 +33,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                       About
+                        Files
                     </header>
 
                     <div class="panel-body">
@@ -58,10 +51,10 @@
                                 <thead>
                                     <tr>
                                         <th>Record No</th>
-                                        <th>Title</th>
-                                        <th>Article</th>
+                                        <th>File Name</th>
+                                        <th>Size</th>
                                         <th>Date Modified</th>
-                                        <th style="width: 138px">Action</th>
+                                        <th style="width: 200px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,6 +64,7 @@
                                         <td>4</td>
                                         <td>X</td>
                                         <td>
+                                            <button type="button" class="btn btn-default btn-sm">Download</button>
                                             <button type="button" class="btn btn-info btn-sm">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
@@ -81,6 +75,7 @@
                                         <td>4</td>
                                         <td>X</td>
                                         <td>
+                                            <button type="button" class="btn btn-default btn-sm">Download</button>
                                             <button type="button" class="btn btn-info btn-sm">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
@@ -91,6 +86,7 @@
                                         <td>4</td>
                                         <td>X</td>
                                         <td>
+                                            <button type="button" class="btn btn-default btn-sm">Download</button>
                                             <button type="button" class="btn btn-info btn-sm">Edit</button>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
@@ -99,8 +95,8 @@
                                 <tfoot>
                                     <tr>
                                         <th>Record No</th>
-                                        <th>Title</th>
-                                        <th>Article</th>
+                                        <th>File Name</th>
+                                        <th>Size</th>
                                         <th>Date Modified</th>
                                         <th>Action</th>
                                     </tr>
