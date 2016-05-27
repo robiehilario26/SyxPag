@@ -29,7 +29,7 @@
 
             e.preventDefault();
             $.ajax({
-                url: "FileUpload_gallery",
+                url: "FileUpload_team",
                 type: "POST",
                 data: new FormData(this),
                 mimeType: "multipart/form-data",
@@ -160,7 +160,7 @@
                     rows = index;
                     
                     var id_pic = value.id.toString();
-                    var table_name = "gallery";
+                    var table_name = "team";
                     var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';
 
                     var x = $('#myimg' + counting + '').attr('src', $(this).src + '?' + (new Date()).getTime());

@@ -30,10 +30,7 @@ public class DAO_Team {
     ResultSet rs;
 
     
-    
-
-
-    public void deleteGallery_by_id(String update_id) {
+    public void deleteTeam_by_id(String update_id) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -55,7 +52,7 @@ public class DAO_Team {
 
     }
 
-    public void add_Gallery(BasherModel bash, Part filePart) {
+    public void add_Team(BasherModel bash, Part filePart) {
         
         InputStream inputStream = null;
 
@@ -96,7 +93,7 @@ public class DAO_Team {
 
     }
 
-    public void update_Gallery_by_id(BasherModel bash, String update_id) {
+    public void update_Team_by_id(BasherModel bash, String update_id) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -120,7 +117,7 @@ public class DAO_Team {
 
     }
 
-    public void update_Gallery_by_id_with_picture(BasherModel bash, String update_id, Part filePart) {
+    public void update_Team_by_id_with_picture(BasherModel bash, String update_id, Part filePart) {
         InputStream inputStream = null;
 
         if (filePart != null) {

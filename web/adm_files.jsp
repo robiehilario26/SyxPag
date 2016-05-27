@@ -7,7 +7,7 @@
 <section id="container" class="">
     <%@include file="/include/header.jsp" %>
     <%@include file="/include/navigator/navFile.jsp" %>
-    <%@include file="/body/_files.jsp" %>
+    <%@include file="/body/_files_new.jsp" %>
     <%@include file="/include/footer.jsp" %>
 </section>
 <%@include file="/include/buttom.jsp" %>

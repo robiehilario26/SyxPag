@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.basher.utility.team;
+package com.basher.utility.files;
 
 import com.DAO.DAO_File;
-import com.DAO.DAO_Gallery;
 import com.DAO.DAO_Team;
 import com.DB.Util.ConnectionPool;
 import com.basher.model.BasherModel;
@@ -30,8 +29,8 @@ import javax.servlet.http.Part;
  * @author User
  */
 @MultipartConfig(maxFileSize = 120177222)
-@WebServlet(name = "FileUpload_team", urlPatterns = {"/FileUpload_team"})
-public class FileUpload_team extends HttpServlet {
+@WebServlet(name = "FileUpload_files", urlPatterns = {"/FileUpload_files"})
+public class FileUpload_files extends HttpServlet {
 
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
@@ -55,15 +54,15 @@ public class FileUpload_team extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action_taken");
-        String title = request.getParameter("title");
-        String article = request.getParameter("article");
+//        String title = request.getParameter("title");
+//        String article = request.getParameter("article");
         String update_id = request.getParameter("update_id");
 
-        System.out.println("Testing the parameters passed if its correct for Gallery");
+        System.out.println("Testing the parameters passed if its correct for Files");
         System.out.println(update_id);
         System.out.println(action);
-        System.out.println(title);
-        System.out.println(article);
+//        System.out.println(title);
+//        System.out.println(article);
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -81,36 +80,29 @@ public class FileUpload_team extends HttpServlet {
         } else {
 
             InputStream inputStream = null; // input stream of the upload file
-            System.out.println("Servlet");
-            // obtains the upload file part in this multipart request
 
             Part filePart = request.getPart("files");
             final String fileName = getFileName(filePart);
-
+            System.out.println("filesize " + filePart.getSize());
+            long file_size = filePart.getSize();
+            System.out.println("fileName " + fileName);
             if (action.equalsIgnoreCase("add")) {
                 System.out.println("insert execute");
-                bash.setTitle(title);
-                bash.setArticle(article);
+//                bash.setTitle(title);
+//                bash.setArticle(article);
                 bash.setFile_name(fileName);
                 bash.setPicture((Blob) inputStream);
+                bash.setFile_size(file_size);
                 dao_team.add_Team(bash, filePart);
 
             } else if (action.equalsIgnoreCase("update")) {
 
-                if (filePart.getSize() == 0) {
-                    System.out.println("no image. image should remain the same");
-                    bash.setArticle(article);
-                    bash.setTitle(title);
-                    dao_team.update_Team_by_id(bash, update_id);
+                System.out.println("new image set.");
+                bash.setFile_name(fileName);
+                bash.setPicture((Blob) inputStream);
+                bash.setFile_size(file_size);
 
-                } else {
-                    System.out.println("new image set.");
-                    bash.setTitle(title);
-                    bash.setArticle(article);
-                    bash.setFile_name(fileName);
-                    bash.setPicture((Blob) inputStream);
-                    dao_team.update_Team_by_id_with_picture(bash, update_id, filePart);
-                }
+                dao_team.update_Team_by_id_with_picture(bash, update_id, filePart);
 
             }
         }

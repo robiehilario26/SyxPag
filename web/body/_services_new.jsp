@@ -17,7 +17,7 @@
                 {
                     //used to force the datable to accept null value
                     //the default content will be null
-                    "targets": [0, 1, 2, 3, 4, 5, 6],
+                    "targets": [0, 1, 2, 3, 4],
                     "defaultContent": ""
                 }
             ]
@@ -29,7 +29,7 @@
 
             e.preventDefault();
             $.ajax({
-                url: "FileUpload_team",
+                url: "FileUpload_services",
                 type: "POST",
                 data: new FormData(this),
                 mimeType: "multipart/form-data",
@@ -39,7 +39,7 @@
                 // timeout: 2000, // Waiting time
                 beforeSend: function () {
                     // Before Ajax 
-                    get_file();
+//                    get_file();
                 },
                 complete: function () {
 
@@ -56,9 +56,9 @@
 //                    if (global_action == "add") {
 //
 //                    }
-                    if (global_reload_page == "true" && global_action != "add") {
-                        window.location.reload();
-                    }
+//                    if (global_reload_page == "true" && global_action != "add") {
+//                        window.location.reload();
+//                    }
 //                   
 
 
@@ -89,13 +89,13 @@
         var id = $(elem).attr("id");
 //        global_leave_id = ($('#' + id + '').parent().siblings().eq(0).text());
         global_pk = ($('#' + id + '').parent().siblings().eq(0).text());
-        global_title = ($('#' + id + '').parent().siblings().eq(2).text());
-        global_article = ($('#' + id + '').parent().siblings().eq(3).text());
-        global_filename = ($('#' + id + '').parent().siblings().eq(5).text());
+        global_title = ($('#' + id + '').parent().siblings().eq(1).text());
+        global_article = ($('#' + id + '').parent().siblings().eq(2).text());
+//        global_filename = ($('#' + id + '').parent().siblings().eq(5).text());
         console.log("update id " + global_pk);
         console.log("title " + global_title);
         console.log("article " + global_article);
-        console.log("scan pic " + global_filename);
+//        console.log("scan pic " + global_filename);
         $("#update_id").val(global_pk);
         $("#title").val(global_title);
         $("#article").val(global_article);
@@ -133,7 +133,7 @@
         console.log("success load load_data");
         $.ajax({
             type: "get", // GET or POST
-            url: 'Data_table_team', // Path to file
+            url: 'Data_table_services', // Path to file
             cache: false,
             data: {
 //                empno:${emp.empNo}
@@ -159,19 +159,19 @@
                     var button = ' <button id="' + counting + '" onclick="set_action_taken_update(this)" type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button id="delete_' + counting + '" type="button" class="btn btn-danger btn-sm" onclick="delete_id(this)">Delete</button>';
                     rows = index;
                     
-                    var id_pic = value.id.toString();
-                    var table_name = "team";
-                    var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';
+//                    var id_pic = value.id.toString();
+//                    var table_name = "team";
+//                    var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';
 
                     var x = $('#myimg' + counting + '').attr('src', $(this).src + '?' + (new Date()).getTime());
                     console.log('time=== ' + counting + '' + x);
                     $('#example1').DataTable().row.add([
                         value.id,
-                        pictview,
+//                        pictview,
                         value.title,
                         value.article,
                         value.date_modified,
-                        value.file_name,
+//                        value.file_name,
                         button
 
 
@@ -201,7 +201,7 @@
 
             $.ajax({
                 type: "post", // GET or POST
-                url: 'FileUpload_team', // Path to file
+                url: 'FileUpload_services', // Path to file
 
                 data: {
                     "action_taken": act,
@@ -304,7 +304,7 @@
                         <button aria-hidden="true" data-dismiss="modal" id="closeModalButton" name="closeModalButton" class="close" type="button">×</button>
                         <h4 class="modal-title">Create New</h4>
                     </div>
-                    <form class="form-horizontal" role="form" id="activity_form" action="FileUpload_team" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" role="form" id="activity_form" action="FileUpload_services" method="POST" enctype="multipart/form-data">
                         <div class="modal-body">
 
 
@@ -320,16 +320,16 @@
                                     <textarea type="text" id="article" name="article" class="form-control" placeholder="Article" rows="4"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="homeImage" class="col-lg-2 col-sm-2 control-label">Image</label>
-                                <div class="col-lg-10">
+                            <!--<div class="form-group">-->
+                                <!--<label for="homeImage" class="col-lg-2 col-sm-2 control-label">Image</label>-->
+                                <!--<div class="col-lg-10">-->
                                     <!--<input type="file" id="homeImage">-->
-                                    <input type="file" name="files" id="files"/>
+                                    <!--<input type="file" name="files" id="files"/>-->
                                     <input type="hidden" name="action_taken" id="action_taken">
                                     <input type="hidden" name="update_id" id="update_id">
                                     <!--<input type="text"  id="workOrderid" name="workOrderid" class="form-control" onkeypress="onTestChange();"/>-->
-                                </div>  
-                            </div>
+                                <!--</div>-->  
+                            <!--</div>-->
 
                         </div>
                         <div class="modal-footer no-border">
@@ -367,11 +367,11 @@
                                 <thead>
                                     <tr>
                                         <th>Record No</th>
-                                        <th>Image</th>
+                                        <!--<th>Image</th>-->
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
-                                        <th>file name</th>
+                                        <!--<th>file name</th>-->
                                         <th style="width: 138px">Action</th>
 
                                     </tr>
@@ -393,11 +393,11 @@
                                 <tfoot>
                                     <tr>
                                         <th>Record No</th>
-                                        <th>Image</th>
+                                        <!--<th>Image</th>-->
                                         <th>Title</th>
                                         <th>Article</th>
                                         <th>Date Modified</th>
-                                        <th>file name</th>
+                                        <!--<th>file name</th>-->
                                         <th>Action</th>
 
                                     </tr>
@@ -419,7 +419,7 @@
     function update_my_exam() {
         var x = "2";
         $.ajax({
-            url: "FileUpload_team",
+            url: "FileUpload_services",
             type: "POST",
             data: {workOrderid: x},
             beforeSend: function () {
