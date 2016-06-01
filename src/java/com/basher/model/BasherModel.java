@@ -35,13 +35,11 @@ public class BasherModel {
     private String fname;
     private String lname;
     private String gender;
-<<<<<<< HEAD
+
     
     private long file_size;
 
 
-=======
->>>>>>> 93cc2b28f41f0d1a90afec9dc7dd2234244ffad5
 
     /**
      * @return the id
@@ -200,10 +198,7 @@ public class BasherModel {
 
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 93cc2b28f41f0d1a90afec9dc7dd2234244ffad5
     public String getFile_name() {
         return file_name;
     }

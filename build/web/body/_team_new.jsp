@@ -1,7 +1,7 @@
 
 <script>
     var global_action = "";
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#example1').dataTable({
             "cache": false,
             "bPaginate": true,
@@ -25,7 +25,7 @@
         });
 
 
-        $("#activity_form").on('submit', (function (e) {
+        $("#activity_form").on('submit', (function(e) {
 
             e.preventDefault();
             $.ajax({
@@ -37,14 +37,14 @@
                 cache: false,
                 processData: false,
                 // timeout: 2000, // Waiting time
-                beforeSend: function () {
+                beforeSend: function() {
                     // Before Ajax 
                     get_file();
                 },
-                complete: function () {
+                complete: function() {
 
                 },
-                success: function () {
+                success: function() {
                     //   $('#requestView').modal('hide');
 //                    setTimeout(load_data(), 1000);
 
@@ -63,7 +63,7 @@
 
 
                 },
-                error: function (xhr) {
+                error: function(xhr) {
 
 
                 }
@@ -106,7 +106,7 @@
     function get_file() {
 
 
-        var has_selected_file = $('input[type=file]').filter(function () {
+        var has_selected_file = $('input[type=file]').filter(function() {
             return $.trim(this.value) != ''
         }).length > 0;
 
@@ -138,27 +138,27 @@
             data: {
 //                empno:${emp.empNo}
             },
-            beforeSend: function () {                                // Before Ajax 
+            beforeSend: function() {                                // Before Ajax 
 
             },
-            complete: function () {
+            complete: function() {
 
                 //$success.show();
             },
-            success: function (response) {
+            success: function(response) {
 // Show content
 //                alert(response.toString());
 
                 $('#example1').DataTable().clear().draw();
 
 
-                $.each(response, function (index, value) {
+                $.each(response, function(index, value) {
 
 
                     counting++;
                     var button = ' <button id="' + counting + '" onclick="set_action_taken_update(this)" type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button id="delete_' + counting + '" type="button" class="btn btn-danger btn-sm" onclick="delete_id(this)">Delete</button>';
                     rows = index;
-                    
+
                     var id_pic = value.id.toString();
                     var table_name = "team";
                     var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';
@@ -180,7 +180,7 @@
 
                 });
             },
-            error: function (xhr) {
+            error: function(xhr) {
 
             }
         });
@@ -211,20 +211,20 @@
 
 
                 },
-                beforeSend: function () {
+                beforeSend: function() {
 
 
                 },
-                complete: function () {
+                complete: function() {
 
                 },
-                success: function (response) {
+                success: function(response) {
 
                     console.log("success");
                     load_data();
 //                    update_my_exam();
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     console.log(xhr.toString());
                 }
             });
@@ -256,20 +256,20 @@
 
 
             },
-            beforeSend: function () {
+            beforeSend: function() {
 
 
             },
-            complete: function () {
+            complete: function() {
 
             },
-            success: function (response) {
+            success: function(response) {
 
                 console.log("success");
                 load_data();
                 update_my_exam();
             },
-            error: function (xhr) {
+            error: function(xhr) {
                 console.log(xhr.toString());
             }
         });
@@ -281,7 +281,7 @@
 
 <script>
 
-    $(document).ready(function () {
+    $(document).ready(function() {
 
         load_data();
 
@@ -290,7 +290,7 @@
 
 </script>
 <!--script for this page-->
-<script src="js/form-component.js"></script>
+<script src="../js/form-component.js"></script>
 <!--main content start-->
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -347,7 +347,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Home 
+                        Team 
                     </header>
 
                     <div class="panel-body">
@@ -422,18 +422,18 @@
             url: "FileUpload_team",
             type: "POST",
             data: {workOrderid: x},
-            beforeSend: function () {
+            beforeSend: function() {
                 // Before Ajax 
 //                console.log("before success" + global_recordno);
             },
-            complete: function () {
+            complete: function() {
 
             },
-            success: function () {
+            success: function() {
                 alert("success:");
 //                load_exam_data_table();
             },
-            error: function () {
+            error: function() {
                 alert("error");
                 alert(xhr.toString());
             }
