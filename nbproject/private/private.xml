@@ -2,34 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/src/java/com/DAO/DAO_About_links.java</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/web/adm_about_link.jsp</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/web/body/_about_link.jsp</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/controller/Controller_About_Link.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/DAO/DAO_Gallery.java</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/adm_team.jsp</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/body/_gallery_new.jsp</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/gallery/FileUpload_gallery.java</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/Picture_view.java</file>
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/src/java/com/basher/utility/gallery/Data_table_gallery.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/web/adm_home.jsp</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/web/body/_home.jsp</file>
-            <file>file:/C:/Users/user/Desktop/abdul_projecta/alimsaidbasher/web/body/_users.jsp</file>
-=======
-            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/adm_home.jsp</file>
->>>>>>> d71e010b367aa697522cade6c12bfe647adb16ff
->>>>>>> 88c0c7bbe0d5b5b4fce4d1435ecdebb2e40df248
->>>>>>> 08639b12148b04fc25d0e56403ed53fa58042b71
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/index.jsp</file>
+            <file>file:/C:/Users/User/Desktop/abdul_projecta/alimsaidbasher/web/bash/index.html</file>
         </group>
->>>>>>> 93cc2b28f41f0d1a90afec9dc7dd2234244ffad5
     </open-files>
 </project-private>
