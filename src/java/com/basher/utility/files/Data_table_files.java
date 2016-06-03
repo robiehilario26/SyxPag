@@ -29,16 +29,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Data_table_files", urlPatterns = {"/Data_table_files"})
 public class Data_table_files extends HttpServlet {
 
-    
-
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               try {
+        try {
             ArrayList<BasherModel> about = new ArrayList<>();
             DAO_File dao = new DAO_File();
-            about = (ArrayList<BasherModel>) dao.getDetailsForTeam();
+            about = (ArrayList<BasherModel>) dao.getDetailsForFiles();
             Gson gson = new Gson();
             JsonElement element = gson.toJsonTree(about, new TypeToken<List<BasherModel>>() {
             }.getType());
@@ -52,13 +49,10 @@ public class Data_table_files extends HttpServlet {
         }
     }
 
-  
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-    }
 
-   
+    }
 
 }

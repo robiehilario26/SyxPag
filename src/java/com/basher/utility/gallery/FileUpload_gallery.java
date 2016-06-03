@@ -6,19 +6,16 @@
 package com.basher.utility.gallery;
 
 import com.DAO.DAO_Gallery;
-import com.DAO.DAO_Home;
 import com.DB.Util.ConnectionPool;
 import com.basher.model.BasherModel;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +26,7 @@ import javax.servlet.http.Part;
  * @author User
  */
 @MultipartConfig(maxFileSize = 120177222)
-@WebServlet(name = "FileUpload_gallery", urlPatterns = {"/FileUpload_gallery"})
+//@WebServlet(name = "FileUpload_gallery", urlPatterns = {"/FileUpload_gallery"})
 public class FileUpload_gallery extends HttpServlet {
 
     private String getFileName(final Part part) {

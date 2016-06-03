@@ -135,9 +135,7 @@
             type: "get", // GET or POST
             url: 'Data_table_team', // Path to file
             cache: false,
-            data: {
-//                empno:${emp.empNo}
-            },
+     
             beforeSend: function() {                                // Before Ajax 
 
             },

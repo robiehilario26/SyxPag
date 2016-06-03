@@ -6,19 +6,16 @@
 package com.basher.utility.files;
 
 import com.DAO.DAO_File;
-import com.DAO.DAO_Team;
 import com.DB.Util.ConnectionPool;
 import com.basher.model.BasherModel;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +26,7 @@ import javax.servlet.http.Part;
  * @author User
  */
 @MultipartConfig(maxFileSize = 120177222)
-@WebServlet(name = "FileUpload_files", urlPatterns = {"/FileUpload_files"})
+//@WebServlet(name = "FileUpload_files", urlPatterns = {"/FileUpload_files"})
 public class FileUpload_files extends HttpServlet {
 
     private String getFileName(final Part part) {
@@ -75,7 +72,7 @@ public class FileUpload_files extends HttpServlet {
             System.out.println("executed");
 
             bash.setId(update_id);
-            dao_team.deleteTeam_by_id(update_id);
+            dao_team.deleteFiles_by_id(update_id);
 
         } else {
 
@@ -93,7 +90,7 @@ public class FileUpload_files extends HttpServlet {
                 bash.setFile_name(fileName);
                 bash.setPicture((Blob) inputStream);
                 bash.setFile_size(file_size);
-                dao_team.add_Team(bash, filePart);
+                dao_team.add_Files(bash, filePart);
 
             } else if (action.equalsIgnoreCase("update")) {
 
@@ -102,7 +99,7 @@ public class FileUpload_files extends HttpServlet {
                 bash.setPicture((Blob) inputStream);
                 bash.setFile_size(file_size);
 
-                dao_team.update_Team_by_id_with_picture(bash, update_id, filePart);
+                dao_team.update_Files_by_id_with_picture(bash, update_id, filePart);
 
             }
         }

@@ -30,7 +30,7 @@ public class DAO_File {
     PreparedStatement ps = null;
     ResultSet rs;
 
-    public void deleteTeam_by_id(String update_id) {
+    public void deleteFiles_by_id(String update_id) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -52,7 +52,7 @@ public class DAO_File {
 
     }
 
-    public void add_Team(BasherModel bash, Part filePart) {
+    public void add_Files(BasherModel bash, Part filePart) {
 
         InputStream inputStream = null;
 
@@ -93,7 +93,7 @@ public class DAO_File {
 
     }
 
-    public void update_Team_by_id(BasherModel bash, String update_id) {
+    public void update_Files_by_id(BasherModel bash, String update_id) {
 
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
@@ -117,7 +117,7 @@ public class DAO_File {
 
     }
 
-    public void update_Team_by_id_with_picture(BasherModel bash, String update_id, Part filePart) {
+    public void update_Files_by_id_with_picture(BasherModel bash, String update_id, Part filePart) {
         InputStream inputStream = null;
 
         if (filePart != null) {
@@ -156,7 +156,7 @@ public class DAO_File {
 
     }
 
-    public List<BasherModel> getDetailsForTeam() throws SQLException {
+    public List<BasherModel> getDetailsForFiles() throws SQLException {
         List<BasherModel> abouts = new ArrayList<>();
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "Data_table_Contact", urlPatterns = {"/Data_table_Contact"})
+//@WebServlet(name = "Data_table_Contact", urlPatterns = {"/Data_table_Contact"})
 public class Data_table_Contact extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

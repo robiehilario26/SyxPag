@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "Controller_Program", urlPatterns = {"/Controller_Program"})
+//@WebServlet(name = "Controller_Program", urlPatterns = {"/zadmin/Controller_Program"})
 public class Controller_Program extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

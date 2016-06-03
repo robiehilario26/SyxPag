@@ -22,7 +22,7 @@ import javax.servlet.http.Part;
  * @author user
  */
 @MultipartConfig(maxFileSize = 120177222)
-@WebServlet(name = "Controller_About_Link", urlPatterns = {"/Controller_About_Link"})
+//@WebServlet(name = "Controller_About_Link", urlPatterns = {"/zadmin/Controller_About_Link"})
 public class Controller_About_Link extends HttpServlet {
 
     @Override

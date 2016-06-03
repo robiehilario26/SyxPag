@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-@WebServlet(name = "Controller_Home", urlPatterns = {"/Controller_Home"})
+//@WebServlet(name = "Controller_Home", urlPatterns = {"/zadmin/Controller_Home"})
 public class Controller_Home extends HttpServlet {
 
     @Override

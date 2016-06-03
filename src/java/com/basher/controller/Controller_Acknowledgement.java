@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "Controller_Acknowledgement", urlPatterns = {"/Controller_Acknowledgement"})
+//@WebServlet(name = "Controller_Acknowledgement", urlPatterns = {"/zadmin/Controller_Acknowledgement"})
 public class Controller_Acknowledgement extends HttpServlet {
 
     @Override

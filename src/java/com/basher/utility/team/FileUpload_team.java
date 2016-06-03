@@ -30,7 +30,7 @@ import javax.servlet.http.Part;
  * @author User
  */
 @MultipartConfig(maxFileSize = 120177222)
-@WebServlet(name = "FileUpload_team", urlPatterns = {"/FileUpload_team"})
+//@WebServlet(name = "FileUpload_team", urlPatterns = {"/FileUpload_team"})
 public class FileUpload_team extends HttpServlet {
 
     private String getFileName(final Part part) {
@@ -59,7 +59,7 @@ public class FileUpload_team extends HttpServlet {
         String article = request.getParameter("article");
         String update_id = request.getParameter("update_id");
 
-        System.out.println("Testing the parameters passed if its correct for Gallery");
+        System.out.println("Testing the parameters passed if its correct for team");
         System.out.println(update_id);
         System.out.println(action);
         System.out.println(title);
@@ -71,7 +71,7 @@ public class FileUpload_team extends HttpServlet {
         ResultSet rs = null;
         String query = "";
         BasherModel bash = new BasherModel();
-        DAO_File dao_team = new DAO_File();
+        DAO_Team dao_team = new DAO_Team();
         if (action.equalsIgnoreCase("deleted")) {
             System.out.println("executed");
 
@@ -98,7 +98,7 @@ public class FileUpload_team extends HttpServlet {
             } else if (action.equalsIgnoreCase("update")) {
 
                 if (filePart.getSize() == 0) {
-                    System.out.println("no image. image should remain the same");
+                    System.out.println("no image. image should remain the same this was found on the update of the team need to respond with the error");
                     bash.setArticle(article);
                     bash.setTitle(title);
                     dao_team.update_Team_by_id(bash, update_id);

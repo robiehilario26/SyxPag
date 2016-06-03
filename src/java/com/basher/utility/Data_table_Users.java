@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author user
  */
-@WebServlet(name = "Data_table_Users", urlPatterns = {"/Data_table_Users"})
+//@WebServlet(name = "Data_table_Users", urlPatterns = {"/Data_table_Users"})
 public class Data_table_Users extends HttpServlet {
 
     @Override

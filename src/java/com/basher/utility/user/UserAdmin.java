@@ -22,7 +22,7 @@ import javax.servlet.annotation.WebServlet;
  * @author user
  */
 @MultipartConfig(maxFileSize = 120177222)
-@WebServlet(name = "UserAdmin", urlPatterns = {"/UserAdmin"})
+//@WebServlet(name = "UserAdmin", urlPatterns = {"/UserAdmin"})
 public class UserAdmin extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
