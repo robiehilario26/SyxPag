@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <!-- Basic Page Needs
@@ -50,7 +51,10 @@
          
         <![endif]-->
 
+
     </head>
+
+
     <body>
         <!-- Navigation
         ==========================================-->
@@ -70,7 +74,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#tf-home" class="page-scroll">Home</a></li>
+                        <li><a href="#tf-home" class="page-scroll" onclick="click_me()">Home</a></li>
                         <li><a href="#tf-about" class="page-scroll">About</a></li>
                         <li><a href="#tf-team" class="page-scroll">Team</a></li>
                         <li><a href="#tf-gallery" class="page-scroll">Gallery</a></li>
@@ -85,13 +89,17 @@
             </div><!-- /.container-fluid -->
         </nav>
 
+
+
         <!-- Home Page
         ==========================================-->
         <div id="tf-home" class="text-center">
             <div class="overlay">
                 <div class="content">
+
                     <h1>Welcome on <strong><span class="color">Spirit8</span></strong></h1>
-                    <p class="lead">We are a digital agency with <strong>years of experience</strong> and with <strong>extraordinary people</strong></p>
+                    <!--<p class="lead">We are a digital agency with <strong>years of experience</strong> and with <strong>extraordinary people</strong></p>-->
+                    <p class="lead">We are a digital agency withyears of experience and with extraordinary people We are a digital agency withyears of experience and with extraordinary people </p>
                     <a href="#tf-about" class="fa fa-angle-down page-scroll"></a>
                 </div>
             </div>
@@ -350,9 +358,14 @@
             </div>
         </div>
 
+
+
+
         <!-- Clients Gallery
                 ==========================================-->
         <div id="tf-gallery">
+
+
             <div class="container"> <!-- Container -->
                 <div class="section-title text-center center">
                     <h2>Take a look at <strong>our gallery</strong></h2>
@@ -361,6 +374,24 @@
                     </div>
                     <div class="clearfix"></div>
                     <!--<small><em>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</em></small>-->
+
+
+                    <div class="categories">
+
+                        <ul class="cat">
+                            <li class="pull-left"><h4>Filter by Type:</h4></li>
+                            <li class="pull-right">
+                                <ol class="type">
+                                    <li><a href="#" data-filter="*" class="active">All</a></li>
+                                    <li><a href="#" data-filter=".web">Web Design</a></li>
+                                    <li><a href="#" data-filter=".photography">Photography</a></li>
+                                    <li><a href="#" data-filter=".app" >Mobile App</a></li>
+                                    <li><a href="#" data-filter=".branding" >Branding</a></li>
+                                </ol>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
                 <div id="lightbox" class="row ">
 
@@ -371,7 +402,7 @@
                                     <div class="hover-text">
                                         <h4>Logo Design</h4>
                                     </div>
-                                    <img src="bash/img/portfolio/01.jpg" class="img-responsive" alt="...">
+                                    <img src="Picture_view?id=11&set_table=gallery" class="img-responsive" alt="...">
                                 </a>
                             </div>
                         </div>
@@ -954,3 +985,33 @@
 
     </body>
 </html>
+
+<script>
+
+                            $(document).ready(function () {
+
+
+//        var imageUrl = "../img/01.jpg";
+//        $('tf-home').css('background-image', 'url("' + imageUrl + '")');
+//        $('tf-home').css('background-image', 'url(' + encodeURIComponent(imageUrl) + ')');
+
+                            });
+
+                            function click_me() {
+//                                $('#myDiv').css('background', 'path/to/image.jpg');
+
+                                console.log("detect");
+                                var imageUrl = "/img/01.jpg";
+//                                $('#tf-home').css('background', 'url("imageUrl' + imageUrl + '")');
+//                                $('#tf-home').css('background-image', 'url(' + encodeURIComponent(imageUrl) + ')');
+//                                $('#tf-home').css('background-image', 'url("../img/01.jpg")');
+//                                 $('#tf-home').parent().css("background", "url('bash/img/01.jpg') no-repeat");
+//                                  $(this).parent().css("backgroundImage", "url('../images/r-srchbg_white.png') no-repeat");
+                                $('#tf-home').css("background-image", "url(bash/img/01.jpg)");
+//                                $('selector').css('backgroundImage', 'url(images/example.jpg)');
+//                                $('selector').css({'background-image': 'url(..img/01.jpg)'});
+//                                document.getElementById("tf-home").style.backgroundImage = "url('../img/01.jpg')";
+//                                document.getElementById("tf-home").style.backgroundImage = imageUrl;
+                            }
+
+</script>

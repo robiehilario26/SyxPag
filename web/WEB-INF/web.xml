@@ -156,6 +156,10 @@
         <servlet-name>Picture_view</servlet-name>
         <url-pattern>/zadmin/Picture_view</url-pattern>
     </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>Picture_view</servlet-name>
+        <url-pattern>/Picture_view</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Picture_view</servlet-name>
         <url-pattern>/Picture_view</url-pattern>
