@@ -117,7 +117,9 @@ ul, ol{
 }
 /* Home Style */
 #tf-home{
-    background: url(../img/01.jpg);
+    /*background-image: url(../img/01.jpg);*/
+    background-image: url('http://localhost:8084/alimsaidbasher/Picture_view_home');
+    /*content:url("http://imgur.com/SZ8Cm.jpg");*/
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
