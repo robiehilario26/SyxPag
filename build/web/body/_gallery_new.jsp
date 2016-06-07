@@ -10,7 +10,7 @@
             "bSort": true,
             "bInfo": true,
             "bAutoWidth": false,
-            "order": [[4, "date_modified"]],
+            "order": [[0, "desc"]],
             // "serverSide": true,
             // "ajax": "LoadEmpOverTime",
             "columnDefs": [
@@ -158,7 +158,7 @@
                     counting++;
                     var button = ' <button id="' + counting + '" onclick="set_action_taken_update(this)" type="button" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button>  <button id="delete_' + counting + '" type="button" class="btn btn-danger btn-sm" onclick="delete_id(this)">Delete</button>';
                     rows = index;
-                    
+
                     var id_pic = value.id.toString();
                     var table_name = "gallery";
                     var pictview = ' <div class="image"><img id="myimg' + counting + '" src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image" style = "width="100px"; height="100px"; /></div>';

@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-@WebServlet(name = "Data_table_files", urlPatterns = {"/Data_table_files"})
+//@WebServlet(name = "Data_table_files", urlPatterns = {"/Data_table_files"})
 public class Data_table_files extends HttpServlet {
 
     @Override

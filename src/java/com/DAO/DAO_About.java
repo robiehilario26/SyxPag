@@ -101,7 +101,7 @@ public class DAO_About {
         List<BasherModel> abouts = new ArrayList<>();
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        String query = "SELECT * FROM about";
+        String query = "SELECT * FROM about order by id desc";
 
         Statement statement = conn.createStatement();
 

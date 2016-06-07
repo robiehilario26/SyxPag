@@ -5,7 +5,6 @@
  */
 package com.basher.utility.team;
 
-import com.DAO.DAO_Gallery;
 import com.DAO.DAO_Team;
 import com.basher.model.BasherModel;
 import com.google.gson.Gson;
@@ -13,11 +12,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-@WebServlet(name = "Data_table_team", urlPatterns = {"/Data_table_team"})
+//@WebServlet(name = "Data_table_team", urlPatterns = {"/Data_table_team"})
 public class Data_table_team extends HttpServlet {
 
    

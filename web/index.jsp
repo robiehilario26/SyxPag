@@ -37,6 +37,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
 
         <script type="text/javascript" src="bash/js/modernizr.custom.js"></script>
+        <script type="text/javascript" src="bash/js/jquery.1.11.1.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,7 +47,7 @@
         
         <style>
         
-        
+         
         <![endif]-->
 
     </head>
@@ -98,6 +99,53 @@
 
         <!-- About Us Page
         ==========================================-->
+
+
+        <script>
+
+
+            function load_data() {
+                console.log("success load load_data");
+                $.ajax({
+                    type: "get", // GET or POST
+                    url: 'Data_table_about', // Path to file
+
+
+                    beforeSend: function () {                                // Before Ajax 
+
+                    },
+                    complete: function () {
+
+                        //$success.show();
+                    },
+                    success: function (response) {
+// Show content
+                        //                alert(response.toString());
+//about-list
+                        $.each(response, function (index, value) {
+
+
+                            console.log(value.id + " " + value.title + " " + value.article + " " + value.date_modified);
+                            var about_list_content = '<li>'
+                                    + '<span class="fa fa-dot-circle-o"></span>'
+                                    + '<strong>' + value.title + '</strong> - <em > <p align="justify">' + value.article + ' </p></em>'
+                                    + ' </li>';
+                            $("#about_data_here").append(about_list_content);
+                        });
+                    },
+                    error: function (xhr) {
+
+                    }
+                });
+            }
+            $(document).ready(function () {
+                console.log("ready!");
+                //append_about_here
+
+                load_data();
+            });</script>
+
+
         <div id="tf-about">
             <div class="container">
                 <div class="row">
@@ -119,49 +167,52 @@
                     </div>
                     <div class="col-md-6">
                         <div class="about-text">
-                            <div class="section-title">
+                            <div id="append_about_here" class="section-title">
                                 <h4>About </h4>
                                 <h2> Aleem <strong> Said Ahmad Basher </strong></h2>
                                 <hr>
                                 <div class="clearfix"></div>
                             </div>
-                            <p class="intro"> <strong>Aleem Said Ahmad Basher (Arabic: ??? ???? ????? ) </strong> born on August 3, 1951) is a Filipino-Muslim Alim, an active Islamic preacher, broadcaster, lecturer and Islamic consultant (an expert / resource person). He is the current chairman of the Imam Council of the Philippines. A Muslim leader and Imam, who tends to the community development, social needs and spiritual guidance of Muslim citizenry specifically those who are living in the Islamic communities in Metro Manila areas, and its nearby provinces in Luzon. Because of his sincerity to serve well the Filipino Muslims, his chairmanship in IMAM - Integrated Movement Access on Moonsighting, an organization that discusses the moon sighting issues among Muslims in the country during the months of Ramadan and Dhu al-Hijjah for the respective rituals and Islamic traditions; inspired him to apply membership in a reputed international moonsighting group the Moonsighting Committee Worldwide - MCW.
-                                Aleem Said is known to be grateful and deferent even to dissimilar in faith. His active participation on various groups nationwide made him recognized in many organizations. He was quoted saying that the "ulama conference would resolve the problem of disunity among the ranks of the ulama" during the recent first National Ulama Consultative Conference, which was held in Cebu organized by the National Commission on Muslim Filipinos. He was also one of the 32 of the country?s top Islamic clerics (ulamas) who support the administration of President Benigno S. Aquino III?s peace processes with Muslim rebel organizations..</p>
-                            <ul class="about-list">
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>PERSONAL LIFE AND EDUCATION</strong> - <em>In 1951, Aleem Said was born, in Makkah, to Sheikh Ahmad and Zinab of Maranao ethnic group. He was the second child and son among five children of Sheikh Ahmad to his first wife. Because of his passion for the Islamic way of life, like his father, Aleem Said decided to pursue a bachelor's degree in Islamic Propagation at Al-Azhar University in Cairo, Egypt which he graduated in 1994. He also has master's degree in business administration and a bachelor's degree in commerce both completed at the Manuel L. Quezon University (MBA-1983 & B.Sc.-1975) respectively.</em>
-                                </li>
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>STUDENTRY AND LEADERSHIP</strong> - <em>During his stay at Al-Azhar University, Aleem Said was intensively immersed to great responsibilities when he was nominated and was elected by his fellow students, as founding President to the Federation of Foreign Students' Association, in Cairo, Egypt in the year 1996 - 1998. Being the former President of the Philippines Students' Association in Cairo, Cairo, Egypt from 1995?1996; made him an effective leader in heading the federation in two years successively. Because of his intense exposure to being a cause oriented and a discipline leader, Aleem Said was inducted to KBP, a prestigious association of broadcasters in the Philippines in 2006. In 2004, he was elected as member to the Board of Directors at the Agama Islam Society, up-to-present.</em>
-                                </li>
+                            <!--                            <p class="intro"> <strong>Aleem Said Ahmad Basher (Arabic: ??? ???? ????? ) </strong> born on August 3, 1951) is a Filipino-Muslim Alim, an active Islamic preacher, broadcaster, lecturer and Islamic consultant (an expert / resource person). He is the current chairman of the Imam Council of the Philippines. A Muslim leader and Imam, who tends to the community development, social needs and spiritual guidance of Muslim citizenry specifically those who are living in the Islamic communities in Metro Manila areas, and its nearby provinces in Luzon. Because of his sincerity to serve well the Filipino Muslims, his chairmanship in IMAM - Integrated Movement Access on Moonsighting, an organization that discusses the moon sighting issues among Muslims in the country during the months of Ramadan and Dhu al-Hijjah for the respective rituals and Islamic traditions; inspired him to apply membership in a reputed international moonsighting group the Moonsighting Committee Worldwide - MCW.
+                                                            Aleem Said is known to be grateful and deferent even to dissimilar in faith. His active participation on various groups nationwide made him recognized in many organizations. He was quoted saying that the "ulama conference would resolve the problem of disunity among the ranks of the ulama" during the recent first National Ulama Consultative Conference, which was held in Cebu organized by the National Commission on Muslim Filipinos. He was also one of the 32 of the country?s top Islamic clerics (ulamas) who support the administration of President Benigno S. Aquino III?s peace processes with Muslim rebel organizations..</p>-->
+                            <ul id="about_data_here" class="about-list">
 
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>ISLAMIC VIEWPOINT</strong> - <em>Aleem Said adhered to the Sunni form of Islam. He is a pro-life and a peace advocator. He denounces terrorism, and describes violence in every form as un-Islamic that a real and true Muslim does not hurt innocent people.</em>
-                                </li>
+                                <!--                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>PERSONAL LIFE AND EDUCATION</strong> - <em>In 1951, Aleem Said was born, in Makkah, to Sheikh Ahmad and Zinab of Maranao ethnic group. He was the second child and son among five children of Sheikh Ahmad to his first wife. Because of his passion for the Islamic way of life, like his father, Aleem Said decided to pursue a bachelor's degree in Islamic Propagation at Al-Azhar University in Cairo, Egypt which he graduated in 1994. He also has master's degree in business administration and a bachelor's degree in commerce both completed at the Manuel L. Quezon University (MBA-1983 & B.Sc.-1975) respectively.</em>
+                                                                </li>-->
 
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>INTERFAITH DIALOGUE</strong> - <em>In 2005, a group of Maranao entrepreneurs living in Manila has elected Aleem Said as its Vice-President to their Manila Muslim Chamber of Commerce, though, he is not involved in any such businesses. In 2010, Aleem Said, being a peace advocator for more than a decade, has successfully convened the Philippines Interfaith Leaders Forum; an innovative step he perceived as an interfaith initiative expert, during his tenure as member of the board of directors at Peacemakers' Circle Foundation. The Peacemakers? Circle was founded in July 1998 by Marites Guingona-Africa, niece of former Philippines Vice-President Teofisto Guingona.[citation needed] He is actively involved in interfaith dialogue, whether in private or public sector. He's quoted saying ?our collective prayers are the best thing that we can do as a nation to bolster the diplomatic efforts and representation of our government before the Government of China to save the lives of the three Filipinos,? as a response to the President's appeal during the wake of the conviction of jailed workers. Aleem Said also served as spiritual consultant during the recent National Forum on Zakat held at the SMX Convention Center. Paying zakat is one of Five Pillars of Islam. He explains that Quran has named the eight kinds of persons who should receive zakah, such as the Masako (destitute); fuqaraa (the needy or poor); amil' Zakah (the alms collectors); VI sabi `Tillah (in the path of God); gharimun (people burdened with debt); ibn as-Sabi l (the wayfarers); Riyadh (people in bondage or slavery); and mu'Allaf (those who have inclined towards Islam).He also gives spiritual guidance on every before, during, and after of the two Eids. In Ramadan, he cited the importance of adhering to the Sunnah of Islam's prophet. He also emphasized that Eid?l Fitr was also a day for visiting relatives and friends and for making reconciliation. In Dhu al-Hijjah, Aleem Said explained that Eid al-Adha symbolizes to the obedience of Prophet Ibrahim and his son Ismail as commanded by Allah, it represents the prayer for peace not only among Muslims but in unity and love of mankind that worship God. The eid means festival and adha means sacrifice.</em>
-                                </li>
+                                <!--
+                                                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>STUDENTRY AND LEADERSHIP</strong> - <em>During his stay at Al-Azhar University, Aleem Said was intensively immersed to great responsibilities when he was nominated and was elected by his fellow students, as founding President to the Federation of Foreign Students' Association, in Cairo, Egypt in the year 1996 - 1998. Being the former President of the Philippines Students' Association in Cairo, Cairo, Egypt from 1995?1996; made him an effective leader in heading the federation in two years successively. Because of his intense exposure to being a cause oriented and a discipline leader, Aleem Said was inducted to KBP, a prestigious association of broadcasters in the Philippines in 2006. In 2004, he was elected as member to the Board of Directors at the Agama Islam Society, up-to-present.</em>
+                                                                </li>-->
+                                <!--
+                                                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>ISLAMIC VIEWPOINT</strong> - <em>Aleem Said adhered to the Sunni form of Islam. He is a pro-life and a peace advocator. He denounces terrorism, and describes violence in every form as un-Islamic that a real and true Muslim does not hurt innocent people.</em>
+                                                                </li>-->
 
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>ACHIEVEMENT AND REWARDS</strong> - <em>Aleem Said has attended numerous activities which were hosted either by a governmental and NGO such as: conference, workshop, seminar, symposium, course, training, forum, meetings etc. in international, national and local levels. These agencies include but not limited to Muslim World League, DepEd-ARMM, World Federation of International Arab-Islamic Schools, Department Of Health?ARMM, International Islamic Federation of Student Organizations (IIFSO) and Islamic Universities League. (I.U.L.)
-                                        He also received plaques, certificates etc. both from government and NGO for his achievements, contribution to the community development and humanitarian activities.</em>
-                                </li>
+                                <!--                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>INTERFAITH DIALOGUE</strong> - <em>In 2005, a group of Maranao entrepreneurs living in Manila has elected Aleem Said as its Vice-President to their Manila Muslim Chamber of Commerce, though, he is not involved in any such businesses. In 2010, Aleem Said, being a peace advocator for more than a decade, has successfully convened the Philippines Interfaith Leaders Forum; an innovative step he perceived as an interfaith initiative expert, during his tenure as member of the board of directors at Peacemakers' Circle Foundation. The Peacemakers? Circle was founded in July 1998 by Marites Guingona-Africa, niece of former Philippines Vice-President Teofisto Guingona.[citation needed] He is actively involved in interfaith dialogue, whether in private or public sector. He's quoted saying ?our collective prayers are the best thing that we can do as a nation to bolster the diplomatic efforts and representation of our government before the Government of China to save the lives of the three Filipinos,? as a response to the President's appeal during the wake of the conviction of jailed workers. Aleem Said also served as spiritual consultant during the recent National Forum on Zakat held at the SMX Convention Center. Paying zakat is one of Five Pillars of Islam. He explains that Quran has named the eight kinds of persons who should receive zakah, such as the Masako (destitute); fuqaraa (the needy or poor); amil' Zakah (the alms collectors); VI sabi `Tillah (in the path of God); gharimun (people burdened with debt); ibn as-Sabi l (the wayfarers); Riyadh (people in bondage or slavery); and mu'Allaf (those who have inclined towards Islam).He also gives spiritual guidance on every before, during, and after of the two Eids. In Ramadan, he cited the importance of adhering to the Sunnah of Islam's prophet. He also emphasized that Eid?l Fitr was also a day for visiting relatives and friends and for making reconciliation. In Dhu al-Hijjah, Aleem Said explained that Eid al-Adha symbolizes to the obedience of Prophet Ibrahim and his son Ismail as commanded by Allah, it represents the prayer for peace not only among Muslims but in unity and love of mankind that worship God. The eid means festival and adha means sacrifice.</em>
+                                                                </li>-->
 
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>VISIT WIKIPEDIA</strong> - <em>  <strong>Said Ahmad Basher </strong>  https://en.wikipedia.org/wiki/Aleem_Said_Ahmad_Basher</em>
-                                </li>
+                                <!--                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>ACHIEVEMENT AND REWARDS</strong> - <em>Aleem Said has attended numerous activities which were hosted either by a governmental and NGO such as: conference, workshop, seminar, symposium, course, training, forum, meetings etc. in international, national and local levels. These agencies include but not limited to Muslim World League, DepEd-ARMM, World Federation of International Arab-Islamic Schools, Department Of Health?ARMM, International Islamic Federation of Student Organizations (IIFSO) and Islamic Universities League. (I.U.L.)
+                                                                        He also received plaques, certificates etc. both from government and NGO for his achievements, contribution to the community development and humanitarian activities.</em>
+                                                                </li>-->
+                                <!--
+                                                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>VISIT WIKIPEDIA</strong> - <em>  <strong>Said Ahmad Basher </strong>  https://en.wikipedia.org/wiki/Aleem_Said_Ahmad_Basher</em>
+                                                                </li>-->
 
-                                <li>
-                                    <span class="fa fa-dot-circle-o"></span>
-                                    <strong>VISIT WIKIPEDIA</strong> - <em> <strong> Sheikh Ahmad Bashir </strong>  https://en.wikipedia.org/wiki/Sheikh_Ahmad_Bashir</em>
-                                </li>
+                                <!--                                <li>
+                                                                    <span class="fa fa-dot-circle-o"></span>
+                                                                    <strong>VISIT WIKIPEDIA</strong> - <em> <strong> Sheikh Ahmad Bashir </strong>  https://en.wikipedia.org/wiki/Sheikh_Ahmad_Bashir</em>
+                                                                </li>-->
                             </ul>
                         </div>
                     </div>
@@ -171,6 +222,89 @@
 
         <!-- Team Page
         ==========================================-->
+
+        <script>
+
+
+            function load_team() {
+
+                $.ajax({
+                    type: "get", // GET or POST
+                    url: 'Data_table_team', // Path to file
+
+
+                    beforeSend: function () {                                // Before Ajax
+
+                    },
+                    complete: function () {
+
+                        //$success.show();
+                    },
+                    success: function (response) {
+
+                        $.each(response, function (index, value) {
+
+
+                            console.log("The value for the team members" + value.id + " " + value.title + " " + value.article + " " + value.date_modified);
+                            var table_name = "team";
+                            var id_pic = value.id.toString();
+                            var about_list_team = '<div class="owl-item" style="width: 285px;">'
+                                    + ' <div class="thumbnail">'
+                                    + '<img src="Picture_view?id=' + id_pic + '&set_table=' + table_name + '" alt = "User Image"  class="img-circle team-img" />'
+                                    + '  <div class="caption">'
+                                    + '  <h3>' + value.title + '</h3>'
+                                    + '   <p>' + value.article + ' </p>'
+                                    + '  </div>'
+                                    + '  </div>'
+                                    + ' </div> ';
+                            setTimeout(function () {
+
+                                $("#team").append(about_list_team);
+
+                            }, 200);
+
+                        });
+                    },
+                    error: function (xhr) {
+
+                    }
+                });
+            }
+            $(document).ready(function () {
+                console.log("ready!");
+                //append_about_here
+
+
+                var sample_data = '<div class="item" id="team1">'
+                        + ' <div class="thumbnail">'
+                        + '  <img src="bash/img/team/01.jpg" alt="..." class="img-circle team-img">'
+                        + ' <div class="caption">'
+                        + '    <h3>Kycen Magoyag</h3>'
+                        + '   <p> Developer / Web Designer / IT Support /Photographer  </p>'
+                        + '    <p>Do not seek to change what has come before. Seek to create that which has not.</p>'
+                        + '  </div>'
+                        + '  </div>'
+                        + ' </div>';
+                $("#team").append(sample_data);
+
+
+                setTimeout(function () {
+
+                    load_team();
+
+                    $("#team1").remove();
+
+
+                }, 200);
+
+
+            });
+
+
+        </script>
+
+
+
         <div id="tf-team" class="text-center">
             <div class="overlay">
                 <div class="container">
@@ -182,85 +316,36 @@
                     </div>
 
                     <div id="team" class="owl-carousel owl-theme row">
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/01.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Kycen Magoyag</h3>
-                                    <p> Developer / Web Designer / IT Support /Photographer  </p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/02.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Jamalodin M.Samsodin</h3>
-                                    <p>IT / Tech Support / Phil Post Support</p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/03.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Aleem Said Ahmad Basher</h3>
-                                    <p> ICPI/ Chairman</p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/04.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Ustad Raziel Ontawar </h3>
-                                    <p>C / Founder</p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
 
 
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/01.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Kycen Magoyag</h3>
-                                    <p>CEO / Founder</p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/02.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Jamalodin M Samsodin</h3>
-                                    <p>CEO / Founder</p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="item">
-                            <div class="thumbnail">
-                                <img src="bash/img/team/03.jpg" alt="..." class="img-circle team-img">
-                                <div class="caption">
-                                    <h3>Aleem Said Ahmad Basher</h3>
-                                    <p>CEO / Founder</p>
-                                    <p>Do not seek to change what has come before. Seek to create that which has not.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <!--
+                                                <div class="item">
+                                                    <div class="thumbnail">
+                                                        <img src="bash/img/team/01.jpg" alt="..." class="img-circle team-img">
+                                                        <div class="caption">
+                                                            <h3>Kycen Magoyag</h3>
+                                                            <p> Developer / Web Designer / IT Support /Photographer  </p>
+                                                            <p>Do not seek to change what has come before. Seek to create that which has not.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+
+                        <!--                        <div class="item">
+                                                    <div class="thumbnail">
+                                                        <img src="bash/img/team/02.jpg" alt="..." class="img-circle team-img">
+                                                        <div class="caption">
+                                                            <h3>Jamalodin M.Samsodin</h3>
+                                                            <p>IT / Tech Support / Phil Post Support</p>
+                                                            <p>Do not seek to change what has come before. Seek to create that which has not.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+
+
+
                     </div>
-
                 </div>
             </div>
         </div>
@@ -389,6 +474,38 @@
 
         <!-- Team Page
       ==========================================-->
+
+        <script>
+            function load_data_services() {
+
+                $.ajax({
+                    type: "get", // GET or POST
+                    url: 'Data_table_services', // Path to file
+                    beforeSend: function () {                                // Before Ajax 
+
+                    },
+                    complete: function () {
+                    },
+                    success: function (response) {
+
+                        $.each(response, function (index, value) {
+                            console.log(value.id + " " + value.title + " " + value.article + " " + value.date_modified);
+                            var about_list_services = ' <div class="col-md-3 col-sm-6 service">'
+                                    + '' + value.title + ' '
+                                    + '<p> ' + value.article + '</p>'
+                                    + ' </div>';
+                            $("#basher_services").append(about_list_services);
+                        });
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            }
+            $(document).ready(function () {
+                load_data_services();
+            });</script>
+
+
         <div id="tf-services" class="text-center">
             <div class="overlay">
                 <div class="container">
@@ -403,30 +520,30 @@
 
                     <!--<div id="team" class="owl-carousel owl-theme row">-->
                     <div class="space"></div>
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6 service">
-                            <i class="fa fa-desktop"></i>
-                            <h4><strong>Web design</strong></h4>
-                            <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                        </div>
+                    <div id="basher_services" class="row">
+                        <!--                        <div class="col-md-3 col-sm-6 service">
+                                                    <i class="fa fa-desktop"></i>
+                                                    <h4><strong>Web design</strong></h4>
+                                                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                                                </div>-->
 
-                        <div class="col-md-3 col-sm-6 service">
-                            <i class="fa fa-mobile"></i>
-                            <h4><strong>Mobile Apps</strong></h4>
-                            <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                        </div>
+                        <!--                        <div class="col-md-3 col-sm-6 service">
+                                                    <i class="fa fa-mobile"></i>
+                                                    <h4><strong>Mobile Apps</strong></h4>
+                                                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                                                </div>-->
 
-                        <div class="col-md-3 col-sm-6 service">
-                            <i class="fa fa-camera"></i>
-                            <h4><strong>Photography</strong></h4>
-                            <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                        </div>
-
-                        <div class="col-md-3 col-sm-6 service">
-                            <i class="fa fa-bullhorn"></i>
-                            <h4><strong>Marketing</strong></h4>
-                            <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
-                        </div>
+                        <!--                        <div class="col-md-3 col-sm-6 service">
+                                                    <i class="fa fa-camera"></i>
+                                                    <h4><strong>Photography</strong></h4>
+                                                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                                                </div>-->
+                        <!--
+                                                <div class="col-md-3 col-sm-6 service">
+                                                    <i class="fa fa-bullhorn"></i>
+                                                    <h4><strong>Marketing</strong></h4>
+                                                    <p>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+                                                </div>-->
                     </div>
                     <!--</div>-->
 
@@ -482,6 +599,44 @@
         <!-- Clients Program Section
         ==========================================-->
 
+        <script>
+            function load_data_Program() {
+                
+                $.ajax({
+                    type: "get", // GET or POST
+                    url: 'Data_table_Program', // Path to file
+                    beforeSend: function () {                                // Before Ajax 
+
+                    },
+                    complete: function () {
+                    },
+                    success: function (response) {
+
+                        $.each(response, function (index, value) {
+                            
+                            
+
+                            console.log(value.id + "Thrones of inaarw araw " + value.title + " " + value.article + " " + value.date_modified);
+
+                            var program_list = ' <li>'
+                                    + '    <span class="fa fa-star-o"></span>'
+                                    + '  <strong>' + value.title + '</strong>  '
+                                    + '<p>' + value.article + ' </p>'
+                                    + '</li>';
+
+                            $("#basher_program").append(program_list);
+                        });
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            }
+            $(document).ready(function () {
+                load_data_Program();
+            });
+
+        </script>
+
 
         <div id="tf-programs" class="text-center">
             <div class="overlay">
@@ -495,7 +650,12 @@
                         <small><em>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</em></small>
                     </div>
                     <div class="row">
-                        <ul class="about-list" style="column-count: 3;">
+                        <ul class="about-list" style="column-count: 3;" id="basher_program">
+<!--                            <li>
+                                <span class="fa fa-star-o"></span>
+                                <strong>PERSONAL LIFE AND EDUCATION</strong>  
+                            </li>-->
+                            <!-- 
                             <li>
                                 <span class="fa fa-star-o"></span>
                                 <strong>PERSONAL LIFE AND EDUCATION</strong>  
@@ -527,11 +687,7 @@
                             <li>
                                 <span class="fa fa-star-o"></span>
                                 <strong>PERSONAL LIFE AND EDUCATION</strong>  
-                            </li>
-                            <li>
-                                <span class="fa fa-star-o"></span>
-                                <strong>PERSONAL LIFE AND EDUCATION</strong>  
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -601,6 +757,42 @@
         </div>
 
         <!-- File Section ==========================================-->
+
+        <script>
+            function load_data_files() {
+                var counting = 0;
+                $.ajax({
+                    type: "get", // GET or POST
+                    url: 'Data_table_files', // Path to file
+                    beforeSend: function () {                                // Before Ajax 
+
+                    },
+                    complete: function () {
+                    },
+                    success: function (response) {
+
+                        $.each(response, function (index, value) {
+                            counting++;
+                            //  alert(response.toString());
+                            console.log(value.id + " " + value.title + " " + value.article + " " + value.date_modified);
+                            var about_list_acknowledgment = '<li>'
+                                    + ' <a href="FileDownloadDB?id=' + value.id.toString() + '"> <span class="fa fa-chain-broken"></span>'
+                                    + '<strong>' + value.file_name + ' </strong>'
+                                    + '  </a> </li>';
+                            $("#basher_files").append(about_list_acknowledgment);
+                        });
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            }
+            $(document).ready(function () {
+                load_data_files();
+            });</script>
+
+
+
+
         <div id="tf-files">
             <div class="container"> <!-- Container -->
                 <div class="section-title text-center center">
@@ -612,44 +804,44 @@
                     <small><em>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</em></small>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <ul class="about-list" style="column-count: 2;">
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-chain-broken"></span>
-                                    <strong>Duis autem vel eum iriure dolor</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-chain-broken"></span>
-                                    <strong>Hendrerit in vulputate velit esse molestie</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-chain-broken"></span>
-                                    <strong>Praesent luptatum zzril delenit augue</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-chain-broken"></span>
-                                    <strong>Praesent luptatum zzril delenit augue</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-chain-broken"></span>
-                                    <strong>Praesent luptatum zzril delenit augue</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-chain-broken"></span>
-                                    <strong>Praesent luptatum zzril delenit augue</strong>  
-                                </a>
-                            </li>
+                    <div class="col-md-12 col-md-offset-2">
+                        <ul id="basher_files" class="about-list" style="column-count: 2;">
+                            <!--                            <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-chain-broken"></span>
+                                                                <strong>Duis autem vel eum iriure dolor</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-chain-broken"></span>
+                                                                <strong>Hendrerit in vulputate velit esse molestie</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-chain-broken"></span>
+                                                                <strong>Praesent luptatum zzril delenit augue</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-chain-broken"></span>
+                                                                <strong>Praesent luptatum zzril delenit augue</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-chain-broken"></span>
+                                                                <strong>Praesent luptatum zzril delenit augue</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-chain-broken"></span>
+                                                                <strong>Praesent luptatum zzril delenit augue</strong>  
+                                                            </a>
+                                                        </li>-->
                         </ul>
                     </div>
                 </div>
@@ -659,6 +851,42 @@
 
         <!-- Contact Section
         ==========================================-->
+
+        <script>
+            function load_data_acknowledgement() {
+                $.ajax({
+                    type: "get", // GET or POST
+                    url: 'Data_table_acknowledgement', // Path to file
+                    beforeSend: function () {                                // Before Ajax 
+
+                    },
+                    complete: function () {
+                    },
+                    success: function (response) {
+
+                        $.each(response, function (index, value) {
+
+                            //  alert(response.toString());
+                            console.log(value.id + " " + value.title + " " + value.article + " " + value.date_modified);
+                            var about_list_acknowledgment = '<li>'
+                                    + ' <a href="#"> <span class="fa fa-user"></span>'
+                                    + '<strong>' + value.title + ' - ' + value.article + ' </strong>'
+                                    + '  </a> </li>';
+                            $("#basher_acknowledgement").append(about_list_acknowledgment);
+                        });
+                    },
+                    error: function (xhr) {
+
+                    }
+                });
+            }
+            $(document).ready(function () {
+
+                load_data_acknowledgement();
+            });</script>
+
+
+
         <div id="tf-lastAcknowledge" class="text-center">
             <div class="container">
                 <div class="section-title text-center center">
@@ -670,26 +898,26 @@
                     <small><em>Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</em></small>
                 </div>
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <ul class="about-list" style="column-count: 3;">
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-user"></span>
-                                    <strong>Robie Hilario</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-user"></span>
-                                    <strong>Jean Michael Sagadal</strong>  
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="fa fa-user"></span>
-                                    <strong>Melvin Corbes</strong>  
-                                </a>
-                            </li>
+                    <div class="col-md-12 col-md-offset-2">
+                        <ul  id="basher_acknowledgement" class="about-list" style="column-count: 3;">
+                            <!--                            <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-user"></span>
+                                                                <strong>Robie Hilario</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-user"></span>
+                                                                <strong>Jean Michael Sagadal</strong>  
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <span class="fa fa-user"></span>
+                                                                <strong>Melvin Corbes</strong>  
+                                                            </a>
+                                                        </li>-->
                         </ul>
                         <div class="space"></div>
                     </div>
@@ -710,7 +938,7 @@
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="bash/js/jquery.1.11.1.js"></script>
+
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script type="text/javascript" src="bash/js/bootstrap.js"></script>
         <script type="text/javascript" src="bash/js/SmoothScroll.js"></script>
@@ -721,6 +949,8 @@
         <!-- Javascripts
         ================================================== -->
         <script type="text/javascript" src="bash/js/main.js"></script>
+
+
 
     </body>
 </html>

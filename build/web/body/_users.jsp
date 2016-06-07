@@ -93,7 +93,7 @@
             "bSort": true,
             "bInfo": true,
             "bAutoWidth": false,
-            "order": [[4, "date_modified"]],
+            "order": [[0, "desc"]],
             // "serverSide": true,
             // "ajax": "LoadEmpOverTime",
             "columnDefs": [

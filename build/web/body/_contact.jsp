@@ -75,8 +75,8 @@
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
-                                   
-                                   
+
+
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -184,7 +184,7 @@
             "bSort": true,
             "bInfo": true,
             "bAutoWidth": false,
-            "order": [[4, "date_modified"]],
+            "order": [[0, "desc"]],
             // "serverSide": true,
             // "ajax": "LoadEmpOverTime",
             "columnDefs": [

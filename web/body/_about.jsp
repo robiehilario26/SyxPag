@@ -102,67 +102,58 @@
 
 <script>
 
-    function clear_the_form() {
+            function clear_the_form() {
 
-        $('#title').val("");
-        $('#article').val("");
-
-    }
+            $('#title').val("");
+                    $('#article').val("");
+            }
 
 
     function save() {
 
-        alert("where are you from here");
-
+    alert("where are you from here");
     }
 
     var global_update_id;
-    var action = "add";
-    function save_edit_about_content() {
+            var action = "add";
+            function save_edit_about_content() {
 
-        var title = $('#title').val();
-        var article = $('#article').val();
+            var title = $('#title').val();
+                    var article = $('#article').val();
+                    $.ajax({
+                    type: "post", // GET or POST
+                            url: 'Controller_About', // Path to file
 
-
-
-
-        $.ajax({
-            type: "post", // GET or POST
-            url: 'Controller_About', // Path to file
-
-            data: {
-                "title": title,
-                "article": article,
-                "action": action,
-                "id": global_update_id
+                            data: {
+                            "title": title,
+                                    "article": article,
+                                    "action": action,
+                                    "id": global_update_id
 
 
 
-            },
-            beforeSend: function () {
+                            },
+                            beforeSend: function () {
 
 
-            },
-            complete: function () {
+                            },
+                            complete: function () {
 
 
-            },
-            success: function (response) {
+                            },
+                            success: function (response) {
 
-                document.getElementById('closeModalButton').click();
-
-                load_data();
-                action = "add";
-                clear_the_form();
-
-
-            },
-            error: function (xhr) {
+                            document.getElementById('closeModalButton').click();
+                                    load_data();
+                                    action = "add";
+                                    clear_the_form();
+                            },
+                            error: function (xhr) {
 
 
+                            }
+                    });
             }
-        });
-    }
 
 
 
@@ -174,107 +165,108 @@
 </script>
 <script>
     $(document).ready(function () {
-        $('#example1').dataTable({
-            "bPaginate": true,
+    $('#example1').dataTable({
+    "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,
             "bSort": true,
             "bInfo": true,
             "bAutoWidth": false,
-            "order": [[4, "date_modified"]],
+            // "order": [[4, "date_modified"]],
+            "order": [[ 0, "desc" ]],
             // "serverSide": true,
             // "ajax": "LoadEmpOverTime",
             "columnDefs": [
-                {
-                    //used to force the datable to accept null value
-                    //the default content will be null
+            {
+            //used to force the datable to accept null value
+            //the default content will be null
                     "targets": [0, 1, 2, 3, 4],
-                    "defaultContent": ""
-                }
+            "defaultContent": ""
+            }
             ]
-                    // "deferLoading": 57
+    // "deferLoading": 57
         });
 
 
-
+    
     });
-
+            
     function update_elem(elem) {
-
-        var id = $(elem).attr("id");
-        action = "edit";
-        var record = ($('#' + id + '').parent().siblings().eq(0).text());
-        var title = ($('#' + id + '').parent().siblings().eq(1).text());
+            
+                    var id = $(elem).attr("id");
+                    action = "edit";
+                    var record = ($('#' + id + '').parent().siblings().eq(0).text());
+                    var title = ($('#' + id + '').parent().siblings().eq(1).text());
         var article = ($('#' + id + '').parent().siblings().eq(2).text());
-
-        global_update_id = record;
+                    
+                    global_update_id = record;
         console.log(global_update_id);
-
-        $('#title').val(title);
+                    
+                    $('#title').val(title);
         $('#article').val(article);
-
+            
     }
 
-
+    
     function delete_about(elem) {
-
+    
         alert("deleting the content");
-
-        var id = $(elem).attr("id");
+            
+            var id = $(elem).attr("id");
         var record = ($('#' + id + '').parent().siblings().eq(0).text());
-
-        action = "delete";
+            
+            action = "delete";
         global_update_id = record;
-
+            
         save_edit_about_content();
 
 
-
+    
     }
 
-
+    
     function load_data() {
-        console.log("success load load_data");
-        $.ajax({
-            type: "get", // GET or POST
+            console.log("success load load_data");
+            $.ajax({
+                    type: "get", // GET or POST
             url: 'Data_table_about', // Path to file
 
-
+                    
             beforeSend: function () {                                // Before Ajax 
-
-            },
+                    
+                    },
             complete: function () {
-
-                //$success.show();
-            },
+                    
+                    //$success.show();
+                    },
             success: function (response) {
 // Show content
-//                alert(response.toString());
-                $('#example1').DataTable().clear().draw();
+                    //                alert(response.toString());
+                            $('#example1').DataTable().clear().draw();
                 var counting = 0;
-
-                $.each(response, function (index, value) {
+                            
+                            $.each(response, function (index, value) {
                     counting++;
-
-                    var button = ' <button type="button"  id="my_update' + counting + '" onclick="update_elem(this)" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button> '
+                                    
+                                    var button = ' <button type="button"  id="my_update' + counting + '" onclick="update_elem(this)" class="btn btn-info btn-sm" data-target="#myModal-1" data-toggle="modal">Edit</button> '
                             + ' <button type="button"   id="my_delete' + counting + '" onclick=" delete_about(this)" class="btn btn-danger btn-sm">Delete</button>';
-
-                    $('#example1').DataTable().row.add([
-                        value.id,
-                        value.title,
-                        value.article,
-                        value.date_modified,
+                                    
+                                    $('#example1').DataTable().row.add([
+                                    value.id,
+                                    value.title,
+                                    value.article,
+                                    value.date_modified,
                         button
-
+                            
                     ]).draw();
 
-
-                });
-            },
+                            
+                    });
+                    },
             error: function (xhr) {
-
+                    
             }
-        });
+    });
     }
 
 
@@ -284,11 +276,11 @@
 </script>
 
 <script>
-
+    
     $(document).ready(function () {
-
+    
         load_data();
-
+    
     });
 
 </script>

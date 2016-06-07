@@ -40,6 +40,8 @@
         <servlet-name>Data_table_files</servlet-name>
         <servlet-class>com.basher.utility.files.Data_table_files</servlet-class>
     </servlet>
+    
+    
     <servlet>
         <servlet-name>Data_table_acknowledgement</servlet-name>
         <servlet-class>com.basher.utility.Data_table_acknowledgement</servlet-class>
@@ -117,13 +119,31 @@
         <url-pattern>/zadmin/Data_table_team</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Data_table_team</servlet-name>
+        <url-pattern>/Data_table_team</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>Controller_About</servlet-name>
         <url-pattern>/zadmin/Controller_About</url-pattern>
     </servlet-mapping>
+    
+    
+    
+    
     <servlet-mapping>
         <servlet-name>Data_table_about</servlet-name>
         <url-pattern>/zadmin/Data_table_about</url-pattern>
     </servlet-mapping>
+    
+    
+    
+    
+    <servlet-mapping>
+        <servlet-name>Data_table_about</servlet-name>
+        <url-pattern>/Data_table_about</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Data_table_home</servlet-name>
         <url-pattern>/zadmin/Data_table_home</url-pattern>
@@ -137,9 +157,21 @@
         <url-pattern>/zadmin/Picture_view</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Picture_view</servlet-name>
+        <url-pattern>/Picture_view</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>Data_table_services</servlet-name>
         <url-pattern>/zadmin/Data_table_services</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Data_table_services</servlet-name>
+        <url-pattern>/Data_table_services</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet-mapping>
         <servlet-name>Data_table_Contact</servlet-name>
         <url-pattern>/zadmin/Data_table_Contact</url-pattern>
@@ -148,14 +180,34 @@
         <servlet-name>Data_table_Program</servlet-name>
         <url-pattern>/zadmin/Data_table_Program</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Data_table_Program</servlet-name>
+        <url-pattern>/Data_table_Program</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Data_table_files</servlet-name>
         <url-pattern>/zadmin/Data_table_files</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Data_table_files</servlet-name>
+        <url-pattern>/Data_table_files</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>Data_table_acknowledgement</servlet-name>
         <url-pattern>/zadmin/Data_table_acknowledgement</url-pattern>
     </servlet-mapping>
+    
+    
+    <servlet-mapping>
+        <servlet-name>Data_table_acknowledgement</servlet-name>
+        <url-pattern>/Data_table_acknowledgement</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet-mapping>
         <servlet-name>Data_table_About_links</servlet-name>
         <url-pattern>/zadmin/Data_table_About_links</url-pattern>
@@ -205,6 +257,11 @@
         <url-pattern>/zadmin/FileDownloadDB</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>FileDownloadDB</servlet-name>
+        <url-pattern>/FileDownloadDB</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>FileUpload_files</servlet-name>
         <url-pattern>/zadmin/FileUpload_files</url-pattern>
     </servlet-mapping>
@@ -230,6 +287,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>adm_home.jsp</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

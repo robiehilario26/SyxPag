@@ -101,7 +101,7 @@ public class DAO_Acknowledgement {
         List<BasherModel> acknowledgements = new ArrayList<>();
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection conn = pool.getConnection();
-        String query = "SELECT * FROM acknowledgement";
+        String query = "SELECT * FROM acknowledgement order by id desc ";
 
         Statement statement = conn.createStatement();
 
