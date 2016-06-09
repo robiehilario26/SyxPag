@@ -156,15 +156,11 @@
         <servlet-name>Picture_view</servlet-name>
         <url-pattern>/zadmin/Picture_view</url-pattern>
     </servlet-mapping>
-      <servlet-mapping>
-        <servlet-name>Picture_view</servlet-name>
-        <url-pattern>/Picture_view</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Picture_view</servlet-name>
         <url-pattern>/Picture_view</url-pattern>
     </servlet-mapping>
-    
+
     <servlet-mapping>
         <servlet-name>Data_table_services</servlet-name>
         <url-pattern>/zadmin/Data_table_services</url-pattern>
@@ -255,6 +251,11 @@
     <servlet-mapping>
         <servlet-name>Data_table_Blog</servlet-name>
         <url-pattern>/zadmin/Data_table_Blog</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Data_table_Blog</servlet-name>
+        <url-pattern>/Data_table_Blog</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FileDownloadDB</servlet-name>
