@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report_Inventory" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="306f1282-5f71-4b8a-9cf1-b2f9fb1d965e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[Select tp.product_id,tp.inv_stock,tp.product_name,tp.brand,tp.group,tp.size,
+                (Select IFNULL(SUM(qty_per_item), 0)
+                FROM tbl_so WHERE so_status_final = 'not final' AND so_fk_product = tp.product_id)
+                as so_not_F,
+                (Select IFNULL(SUM(qty_per_item), 0)
+                 FROM tbl_so WHERE so_status_final = 'final' AND so_fk_product = tp.product_id)
+                as so_F,
+                (Select IFNULL(SUM(po_qty_periItem), 0)
+                FROM tbl_po WHERE po_status_final = 'not final' AND po_fk_product_id = tp.product_id)
+                as po_not_F,
+                (Select IFNULL(SUM(po_qty_periItem), 0)
+                FROM tbl_po WHERE po_status_final = 'final' AND po_fk_product_id = tp.product_id)
+                as po_F,
+                (Select tp.inv_stock  - IFNULL(SUM(qty_per_item), 0)
+                 FROM tbl_so WHERE so_status_final = 'not final' AND so_fk_product = tp.product_id)
+                as `available`,
+                (Select tp.`inv_stock`  + IFNULL(SUM(po_qty_periItem), 0)
+                FROM tbl_po WHERE po_status_final = 'not final' AND po_fk_product_id = tp.product_id)
+                as `future_po`,
+                (Select (tp.inv_stock + SUM(po_qty_periItem)) - so_F
+                FROM tbl_po WHERE po_status_final = 'final' AND po_fk_product_id = tp.product_id)
+                as `commited`
+                FROM `tbl_product_maintenance` tp]]>
+	</queryString>
+	<field name="product_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inv_stock" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="product_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="brand" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="group" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="size" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="so_not_F" class="java.lang.Double"/>
+	<field name="so_F" class="java.lang.Double"/>
+	<field name="po_not_F" class="java.lang.Double"/>
+	<field name="po_F" class="java.lang.Double"/>
+	<field name="available" class="java.lang.Double"/>
+	<field name="future_po" class="java.lang.Double"/>
+	<field name="commited" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="217" y="0" width="147" height="26" uuid="39743fdf-b03a-4977-ae4c-373eaa8ef0a4"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SYXPAG TRADING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="241" y="26" width="100" height="20" uuid="f64d620b-486d-40fb-900a-1272a34e4bac"/>
+				<text><![CDATA[Inventory Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="2" width="100" height="20" uuid="8906bc39-f6c7-436d-8b82-0b5c08c4f878"/>
+				<text><![CDATA[Product ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="2" width="100" height="20" uuid="9f92e9cf-c7a0-4b8e-8527-05708dc9b8d8"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="2" width="39" height="20" uuid="e1d7b18f-8d44-44a5-b1b5-3ecf4801231f"/>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="2" width="63" height="20" uuid="d98fbda9-5a1d-422d-8eb5-11bf62d0fee9"/>
+				<text><![CDATA[Future Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="2" width="48" height="20" uuid="77eea0be-eee4-44a8-8459-ec8bcfa9f592"/>
+				<text><![CDATA[Brand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="2" width="61" height="20" uuid="3aa18f56-1fd5-412a-9f65-f71da7fcd172"/>
+				<text><![CDATA[Group]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="441" y="2" width="58" height="20" uuid="f2ff701d-0874-4663-8362-00108a6e1910"/>
+				<text><![CDATA[Size]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="18" y="0" width="494" height="20" uuid="003151d6-5a3f-469e-9baa-d62b76266e7e"/>
+			</rectangle>
+			<textField>
+				<reportElement x="30" y="0" width="100" height="20" uuid="49c59358-cb46-45b5-9126-d70d9d58050f"/>
+				<textFieldExpression><![CDATA[$F{product_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="0" width="39" height="20" uuid="ee497b33-213f-4473-b346-add1d707729e"/>
+				<textFieldExpression><![CDATA[$F{inv_stock}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="0" width="100" height="20" uuid="753bd50e-5ca9-4391-b507-e7601c5bb90c"/>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="0" width="63" height="20" uuid="6f708315-2d26-4bab-b321-e5b10322c479"/>
+				<textFieldExpression><![CDATA[$F{future_po}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="0" width="48" height="20" uuid="dac78773-2c13-4b23-959c-285999f144d4"/>
+				<textFieldExpression><![CDATA[$F{brand}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="61" height="20" uuid="5e81f069-c42c-4f50-b1fb-52afbe244a81"/>
+				<textFieldExpression><![CDATA[$F{group}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="441" y="0" width="58" height="20" uuid="6768ad06-1606-4191-89fe-c2d9fb6c725f"/>
+				<textFieldExpression><![CDATA[$F{size}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

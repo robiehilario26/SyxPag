@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report_ar" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="468de940-2a54-4f32-8919-cbc3d39ddc87">
+	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_so_id" class="java.util.Collection"/>
+	<parameter name="p_from" class="java.lang.String"/>
+	<parameter name="p_to" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.so_id,DATE_FORMAT(a.time_stamp,'%m/%d/%Y') as date_f,a.total_price,a.total_qty, DATE_FORMAT(b.time_stamp,'%m/%d/%Y') as date_c,a.store_name, a.customer_name,
+(SELECT  SUM(distinct c.total_price)
+FROM tbl_so c
+inner join tbl_joint_so b on
+b.pk_joint_so = c.so_id
+WHERE $X{IN, c.so_id, p_so_id} AND c.pk <= a.pk AND c.so_status_final ='final' AND date(c.time_stamp) >= $P{p_from} AND date(c.time_stamp) <= $P{p_to})
+as running, (Select ar from tbl_customer_maintenance where pk= a.fk) as ar_,
+(SELECT  SUM(distinct d.total_price) + ar_
+FROM tbl_so d
+WHERE $X{IN, d.so_id, p_so_id} and d.so_status_final ='final')
+as running_total, a.so_remarks FROM `tbl_so` a
+inner join tbl_joint_so b on
+b.pk_joint_so = a.so_id
+where $X{IN, a.so_id, p_so_id}
+group by so_id asc]]>
+	</queryString>
+	<field name="so_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_f" class="java.lang.String"/>
+	<field name="total_price" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_qty" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date_c" class="java.lang.String"/>
+	<field name="store_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="running" class="java.math.BigDecimal"/>
+	<field name="ar_" class="java.lang.String"/>
+	<field name="running_total" class="java.lang.Double"/>
+	<field name="so_remarks" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="variable1" class="java.lang.Integer" calculation="Sum"/>
+	<variable name="variable2" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{ar_}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="variable3" class="java.lang.Integer">
+		<variableExpression><![CDATA[new Integer($V{variable1}.intValue() + $V{variable2}.intValue() )]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="215" y="0" width="147" height="26" uuid="93f4f70e-1a77-45cd-bbe2-b02a068a7610"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SYXPAG TRADING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="26" width="100" height="20" uuid="5891725e-f01a-4e33-9be5-f28f1b23b647"/>
+				<text><![CDATA[Account Receivable]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="22" width="63" height="20" uuid="4d58f955-5479-4a7b-bc3e-db13a19fb475"/>
+				<text><![CDATA[Store Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="14" y="2" width="82" height="20" uuid="6dd0e5b5-db32-4be9-8546-7e7a784d94e9"/>
+				<text><![CDATA[Customer Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="22" width="100" height="20" uuid="bbe7c697-ade3-493f-a4c8-a1f10ff65d0d"/>
+				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="2" width="100" height="20" uuid="a0da46a0-6ffd-4b58-8243-33df811ea95d"/>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="379" y="22" width="33" height="20" uuid="e74f742d-006a-4c03-9c66-88fccf8fb0fb"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="412" y="22" width="56" height="20" uuid="8d905262-6d31-4a22-b6d4-c4f4dac5cc83"/>
+				<textFieldExpression><![CDATA[$P{p_from}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="22" width="72" height="20" uuid="623a8f10-9fd8-4deb-a20c-8c628148d8f0"/>
+				<textFieldExpression><![CDATA[$P{p_to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="470" y="18" width="7" height="20" uuid="13020339-52f3-4db3-b89c-bcf78d92d3db"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="2" width="88" height="20" uuid="f6103734-54f2-4ad2-865e-5c41827f02d1"/>
+				<text><![CDATA[Total Running Bal:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="411" y="2" width="100" height="20" uuid="05655727-0989-4c62-bdce-186100589121"/>
+				<textFieldExpression><![CDATA[$F{running_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="2" width="100" height="20" uuid="af834fca-ba73-4836-a108-d840de6b6828"/>
+				<text><![CDATA[SO ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="2" width="100" height="20" uuid="7f2aede4-01c1-4b2d-9ffd-15275523503f"/>
+				<text><![CDATA[Total Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="2" width="31" height="20" uuid="25b43889-e155-4b58-9394-1f8106b43359"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="2" width="100" height="20" uuid="db5f8bee-6c7e-4ee9-913e-34a1e1cf37b9"/>
+				<text><![CDATA[Running Bal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="2" width="72" height="20" uuid="3191ab24-1709-4d87-967f-7db0502322d8"/>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="14" y="1" width="538" height="19" uuid="9a6e234e-dc5c-4c65-9620-7646d5c5fa49"/>
+			</rectangle>
+			<textField>
+				<reportElement x="14" y="0" width="100" height="20" uuid="b965cedf-e48f-4f1a-8b8f-1b49cd431d7d"/>
+				<textFieldExpression><![CDATA[$F{so_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="1" width="65" height="19" uuid="8402d828-6514-4869-af8d-6eb6c1f837f3"/>
+				<textFieldExpression><![CDATA[$F{date_f}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="0" width="100" height="20" uuid="812261ba-477e-40c6-bb19-2563d2b107cf"/>
+				<textFieldExpression><![CDATA[$F{running}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="0" width="147" height="20" uuid="30b60691-f6ef-4400-a163-6ac7f00d83fb"/>
+				<textFieldExpression><![CDATA[$F{so_remarks}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="100" height="20" uuid="a302a3fa-ac36-4075-aaa6-9cacca779ceb"/>
+				<textFieldExpression><![CDATA[$F{total_price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="468" y="15" width="68" height="20" uuid="30661865-f79f-4914-8a6e-f1002c7ca842"/>
+				<textFieldExpression><![CDATA[$F{running}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="303" y="15" width="100" height="20" uuid="fa85c720-fe9c-4475-9aae-861e0c78ab06"/>
+				<textFieldExpression><![CDATA[$F{ar_}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

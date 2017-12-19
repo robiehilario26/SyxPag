@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Report_ar" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="468de940-2a54-4f32-8919-cbc3d39ddc87">
+	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.x" value="107"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_from" class="java.lang.String"/>
+	<parameter name="p_to" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT  CAST(so_id as char(50)), CAST(fk as char(50)), customer_name, store_name, prod_name, type_payment, current_ar, `total_price`,`so_remarks`, time_stamp FROM tbl_so
+WHERE type_payment = 'Cash' and date(time_stamp) >=  $P{p_from} AND date(time_stamp) <= $P{p_to} and so_status_final = 'final'
+group by so_id]]>
+	</queryString>
+	<field name="CAST(so_id as char(50))" class="java.lang.String"/>
+	<field name="CAST(fk as char(50))" class="java.lang.String"/>
+	<field name="customer_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="store_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prod_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="type_payment" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="current_ar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_price" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="so_remarks" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="time_stamp" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="variable1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_price}]]></variableExpression>
+	</variable>
+	<variable name="variable2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total_price}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="215" y="0" width="147" height="26" uuid="93f4f70e-1a77-45cd-bbe2-b02a068a7610"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SYXPAG TRADING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="26" width="100" height="20" uuid="5891725e-f01a-4e33-9be5-f28f1b23b647"/>
+				<text><![CDATA[Cash Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="368" y="22" width="33" height="20" uuid="e74f742d-006a-4c03-9c66-88fccf8fb0fb"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="401" y="22" width="56" height="20" uuid="8d905262-6d31-4a22-b6d4-c4f4dac5cc83"/>
+				<textFieldExpression><![CDATA[$P{p_from}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="22" width="72" height="20" uuid="623a8f10-9fd8-4deb-a20c-8c628148d8f0"/>
+				<textFieldExpression><![CDATA[$P{p_to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="459" y="18" width="7" height="20" uuid="13020339-52f3-4db3-b89c-bcf78d92d3db"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="2" width="64" height="20" uuid="af834fca-ba73-4836-a108-d840de6b6828"/>
+				<text><![CDATA[SO ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="2" width="76" height="20" uuid="7f2aede4-01c1-4b2d-9ffd-15275523503f"/>
+				<text><![CDATA[Total Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="2" width="31" height="20" uuid="25b43889-e155-4b58-9394-1f8106b43359"/>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="0" width="72" height="20" uuid="3191ab24-1709-4d87-967f-7db0502322d8"/>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="131" y="1" width="58" height="20" uuid="d6ff7098-c265-4414-951f-ae2aa9efaaee"/>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="1" width="82" height="20" uuid="d45735c8-79b1-4219-bf9f-4124ec82336c"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="1" width="64" height="20" uuid="906df658-2b4a-49c0-8a05-75b1a91ab9fc"/>
+				<text><![CDATA[Store]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="3" y="1" width="549" height="19" uuid="9a6e234e-dc5c-4c65-9620-7646d5c5fa49"/>
+			</rectangle>
+			<textField>
+				<reportElement x="371" y="0" width="73" height="20" uuid="dd435ab7-e213-4e9f-8b9b-5c10e8e892cb"/>
+				<textFieldExpression><![CDATA[$F{total_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="100" height="20" uuid="93afd034-83fb-4625-9abe-aaf02818346a"/>
+				<textFieldExpression><![CDATA[$F{so_remarks}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="70" y="0" width="55" height="20" uuid="692411e2-4afb-46b3-8c7f-c77fe5eef207"/>
+				<textFieldExpression><![CDATA[$F{time_stamp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="194" y="0" width="82" height="20" uuid="1cc11aae-7b8c-4b89-92af-88e8fe73192f"/>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="83" height="20" uuid="b4901d73-4051-4392-87b4-cdbafbce38cf"/>
+				<textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="0" width="64" height="20" uuid="0c43e0ec-fe0d-40ce-93d7-04700dbc7d53"/>
+				<textFieldExpression><![CDATA[$F{CAST(so_id as char(50))}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="0" width="58" height="20" uuid="3ce2d49b-8e8a-43e7-8d8f-016d1bd457bd"/>
+				<textFieldExpression><![CDATA[$F{CAST(fk as char(50))}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="453" y="4" width="99" height="19" uuid="f344a31d-48b2-4c34-9adc-d7a3c071452b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="391" y="4" width="60" height="20" uuid="62b2b80d-c7eb-4368-8657-5a523caf728e"/>
+				<text><![CDATA[Grand Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="467" y="5" width="79" height="20" uuid="7704117e-1568-4b24-a9e0-744b66192f15"/>
+				<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="29" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
